@@ -20,7 +20,7 @@ export const Sidebar = () => {
 
   return (
     <aside
-      className={`bg-secondary text-secondary-foreground w-64 flex-shrink-0 transition-all duration-300 ease-in-out border-r border-border ${
+      className={`text-secondary-foreground w-64 flex-shrink-0 transition-all duration-300 ease-in-out border-r border-border ${
         isSidebarOpen ? "translate-x-0" : "-translate-x-full"
       } md:translate-x-0 md:static fixed inset-y-0 left-0 z-50 flex flex-col`}
     >

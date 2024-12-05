@@ -1,101 +1,75 @@
-import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <>
+      <h2 className="text-3xl font-bold mb-4">Welcome to Roundest Pokémon!</h2>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+      <section className="mb-8">
+        <h3 className="text-2xl font-semibold mb-2">What&#39;s This All About?</h3>
+        <p className="mb-4">
+          Roundest Pokémon is a fun and simple game where you get to decide which Pokémon is the roundest!
+        </p>
+        <p className="mb-4">
+          Here&#39;s how it works:
+        </p>
+        <ul className="list-disc list-inside mb-4">
+          <li>You&#39;ll be shown two Pokémon side by side.</li>
+          <li>Your job is to pick the one you think is rounder.</li>
+          <li>Click on the Pokémon you choose, and your vote will be counted!</li>
+        </ul>
+      </section>
+
+      <section className="mb-8">
+        <h3 className="text-2xl font-semibold mb-2">The Twist: Choose Your Backend!</h3>
+        <p className="mb-4">
+          Now, here&#39;s where it gets interesting. When you vote, you can choose which backend system processes your vote.
+          Don&#39;t worry if you&#39;re not tech-savvy - this is just a fun way to show how different computer systems can work
+          together!
+        </p>
+        <p>
+          No matter which backend you choose, all votes end up in the same place. It&#39;s like mailing a letter - you can
+          use different post offices, but they all reach the same destination!
+        </p>
+      </section>
+
+      <section className="mb-8">
+        <h3 className="text-2xl font-semibold mb-2">Ready to Play?</h3>
+        <p className="mb-4">
+          Click the &#34;Vote&#34; button below to start judging Pokémon roundness!
+        </p>
+        <p className="mb-4">
+          Want to see which Pokémon are winning? Check out the &#34;Results&#34; page!
+        </p>
+        <div className="flex space-x-4">
+          <Link href="/vote"
+                className="border border-foreground text-foreground px-4 py-2 rounded hover:bg-foreground hover:text-background transition-colors duration-200">
+            Vote Now
+          </Link>
+          <Link href="/results"
+                className="border border-foreground text-foreground px-4 py-2 rounded hover:bg-foreground hover:text-background transition-colors duration-200">
+            See Results
+          </Link>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+      </section>
+
+      <section className="mb-8">
+        <h3 className="text-2xl font-semibold mb-2">More Information</h3>
+        <p className="mb-4">
+          Curious about how this works? Want to know more about the creator? Check out these links:
+        </p>
+        <div className="flex space-x-4">
+          <Link href="/code"
+                className="border border-foreground text-foreground px-4 py-2 rounded hover:bg-foreground hover:text-background transition-colors duration-200">
+            View Code
+          </Link>
+          <Link href="/author"
+                className="border border-foreground text-foreground px-4 py-2 rounded hover:bg-foreground hover:text-background transition-colors duration-200">
+            About the Author
+          </Link>
+        </div>
+      </section>
+    </>
+
   );
 }

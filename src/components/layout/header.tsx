@@ -1,32 +1,44 @@
 "use client";
 
 import React from "react";
-import { Button } from "@/components/ui/button";
-import { MenuIcon } from "lucide-react";
-import { ModeToggle } from "../dark-mode/mode-toogle";
-import { useSidebar } from "@/context/sidebar-context";
+import Link from "next/link";
+import { usePathname } from "next/navigation"; // To get the current URI
+import { ModeToggle } from "@/components/dark-mode/mode-toogle";
 
 export const Header = () => {
-  const { toggleSidebar } = useSidebar();
+  const pathname = usePathname(); // Fetch the current path
 
   return (
-    <header className="text-secondary-foreground shadow-sm z-10 h-16 flex items-center">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex justify-between items-center">
-        {/* <h1 className="text-2xl font-semibold">Dashboard</h1> */}
-        <div></div>
-        <div className="flex gap-2">
-          <ModeToggle />
-          <Button
-            variant="outline"
-            size="icon"
-            className="md:hidden"
-            onClick={toggleSidebar}
-          >
-            <MenuIcon className="h-6 w-6" />
-            <span className="sr-only">Open sidebar</span>
-          </Button>
-        </div>
-      </div>
+    <header className="p-4 border-b border-gray-200">
+      <nav className="container mx-auto flex justify-between items-end">
+        <h1 className="text-2xl font-bold">
+          <Link href="/" className="hover:underline">
+            &lt;Roundest Pokémon/&gt;
+          </Link>
+        </h1>
+        <ul className="flex space-x-4 items-end">
+          {[
+            { href: "/vote", label: "Vote" },
+            { href: "/results", label: "Results" },
+            { href: "/code", label: "Code" },
+            { href: "/author", label: "Author" },
+          ].map((link) => (
+            <li key={link.href}>
+              <Link
+                href={link.href}
+                className={`hover:underline transition-colors duration-200 ${
+                  !pathname.startsWith(link.href) && "text-gray-500"
+                }`}
+              >
+                {link.label}
+              </Link>
+            </li>
+          ))}
+          <li>
+            <ModeToggle />
+          </li>
+        </ul>
+      </nav>
     </header>
   );
 };

@@ -3,17 +3,47 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { XIcon } from "lucide-react";
+import {ChevronDownIcon, XIcon} from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useSidebar } from "@/context/sidebar-context";
+import {DropdownMenu, DropdownMenuContent, DropdownMenuTrigger} from "@/components/ui/dropdown-menu";
+import Image from "next/image";
 
 export const Sidebar = () => {
   const pathname = usePathname();
 
   const navItems = [
-    { href: "/users", label: "Users" },
-    { href: "/about", label: "About" },
+    {
+      href: "/java",
+      label: "Java",
+      icon: "/svgs/java-icon.svg",
+      options: [
+        { label: "Home", href: "/java" },
+        { label: "Vote", href: "/java/vote" },
+        { label: "Results", href: "/java/results" },
+      ],
+    },
+    {
+      href: "/kotlin",
+      label: "Kotlin",
+      icon: "/svgs/kotlin-icon.svg",
+      options: [
+        { label: "Home", href: "/kotlin" },
+        { label: "Vote", href: "/kotlin/vote" },
+        { label: "Results", href: "/kotlin/results" },
+      ],
+    },
+    {
+      href: "/groovy",
+      label: "Groovy",
+      icon: "/svgs/groovy-icon.svg",
+      options: [
+        { label: "Home", href: "/groovy" },
+        { label: "Vote", href: "/groovy/vote" },
+        { label: "Results", href: "/groovy/results" },
+      ],
+    }
   ];
 
   const { isSidebarOpen, toggleSidebar } = useSidebar();
@@ -41,15 +71,28 @@ export const Sidebar = () => {
       <ScrollArea className="flex-grow">
         <nav className="p-4 space-y-2">
           {navItems.map(item => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className={`block py-2 px-4 rounded hover:bg-primary/10 ${
-                pathname.startsWith(item.href) ? "bg-primary/10" : ""
-              }`}
-            >
-              {item.label}
-            </Link>
+            <DropdownMenu key={item.href}>
+              <DropdownMenuTrigger asChild>
+                <div className={`block py-2 px-4 rounded hover:bg-primary/10 ${pathname.startsWith(item.href) ? "bg-primary/10" : ""} flex items-center justify-between`}>
+                  <div className="flex items-center">
+                    <Image src={item.icon} alt={item.label} width={22} height={22} className="mr-2" />
+                    {item.label}
+                  </div>
+                  <ChevronDownIcon className="h-4 w-4" />
+                </div>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                {item.options.map(option => (
+                  <Link
+                    key={option.href}
+                    href={option.href}
+                    className="block py-2 px-4 rounded hover:bg-primary/10"
+                  >
+                    {option.label}
+                  </Link>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
           ))}
         </nav>
       </ScrollArea>

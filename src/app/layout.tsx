@@ -19,9 +19,9 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Pollito's user_manager_frontend",
+  title: "<Roundest Pokémon/>",
   description:
-    "A demonstration on how to consume a RESTful API following Design by Contract principles.",
+    "A fun way to show how different computer systems can work together!.",
 };
 
 export default function RootLayout({

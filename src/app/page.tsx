@@ -4,8 +4,8 @@ export default function Home() {
   return (
     <div className="min-h-screen p-8">
       <header className="text-center mb-12">
-        <h2 className="text-4xl font-extrabold mb-4">
-          Welcome to Roundest Pokémon!
+        <h2 className="text-6xl font-extrabold mb-4">
+          {"<Roundest Pokémon/>"}
         </h2>
         <p className="text-lg">
           A fun game to find the roundest Pokémon in the universe!
@@ -33,12 +33,13 @@ export default function Home() {
             The Twist: Choose Your Backend!
           </h3>
           <p className="mb-4">
-            When you vote, you can select which backend system processes your
-            vote. It&#39;s a playful way to explore how systems work!
+            When you vote, you can choose which backend system processes your vote.
+            Don&#39;t worry if you&#39;re not tech-savvy - this is just a fun way to show how different computer systems can work
+            together!
           </p>
           <p className="">
-            No matter your choice, all votes end up in the same place, just like
-            letters in the mail!
+            No matter which backend you choose, all votes end up in the same place. It&#39;s like mailing a letter - you can
+            use different post offices, but they all reach the same destination!
           </p>
         </section>
 
@@ -67,7 +68,7 @@ export default function Home() {
         <section className="p-6 shadow border-2 rounded-lg">
           <h3 className="text-2xl font-bold mb-4">More Information</h3>
           <p className="mb-4">
-            Curious about the backend? Or want to know more about the creator?
+            Curious about how this works? Or want to know more about the creator?
             Explore these links:
           </p>
           <div className="flex space-x-4">

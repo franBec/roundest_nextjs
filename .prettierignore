@@ -1,6 +1,6 @@
 *.md
 .next/
-.vscode/
+.idea/
 node_modules/
 src/__generated__/
 src/openapi/

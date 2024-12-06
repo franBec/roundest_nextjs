@@ -2,16 +2,10 @@
   "extends": ["next/core-web-vitals", "next/typescript"],
   "ignorePatterns": [
     ".next/",
-    ".vscode/",
+    ".idea/",
     "node_modules/",
     "public/",
     "src/__generated__/",
-    "src/components/dark-mode/",
-    "src/components/gitdagray/",
-    "src/components/react-query/",
-    "src/components/ui/",
-    "src/hooks/",
-    "src/lib/",
     "src/openapi/"
   ]
 }

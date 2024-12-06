@@ -1,0 +1,6 @@
+*.md
+.next/
+.vscode/
+node_modules/
+src/__generated__/
+src/openapi/

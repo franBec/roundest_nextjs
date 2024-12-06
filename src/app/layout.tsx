@@ -25,14 +25,14 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({
-                                     children,
-                                   }: Readonly<{
+  children,
+}: Readonly<{
   children: React.ReactNode;
   modal: React.ReactNode;
 }>) {
   return (
     // <ClientProvider>
-      <html lang="en">
+    <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
@@ -43,13 +43,11 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Layout>
-            <Suspense fallback={<Loading />}>
-              {children}
-            </Suspense>
+            <Suspense fallback={<Loading />}>{children}</Suspense>
           </Layout>
         </ThemeProvider>
       </body>
-      </html>
+    </html>
     // </ClientProvider>
   );
 }

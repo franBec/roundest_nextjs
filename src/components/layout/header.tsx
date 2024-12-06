@@ -22,7 +22,7 @@ export const Header = () => {
             { href: "/results", label: "Results" },
             { href: "/code", label: "Code" },
             { href: "/author", label: "Author" },
-          ].map((link) => (
+          ].map(link => (
             <li key={link.href}>
               <Link
                 href={link.href}

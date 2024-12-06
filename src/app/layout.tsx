@@ -3,7 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Layout from "@/components/layout/layout";
 import { ThemeProvider } from "@/components/dark-mode/theme-provider";
-// import ClientProvider from "@/components/react-query/client-provider";
+import ClientProvider from "@/components/react-query/client-provider";
 import React, { Suspense } from "react";
 import Loading from "@/components/v0/loading";
 
@@ -31,7 +31,7 @@ export default function RootLayout({
   modal: React.ReactNode;
 }>) {
   return (
-    // <ClientProvider>
+    <ClientProvider>
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
@@ -48,6 +48,6 @@ export default function RootLayout({
         </ThemeProvider>
       </body>
     </html>
-    // </ClientProvider>
+    </ClientProvider>
   );
 }

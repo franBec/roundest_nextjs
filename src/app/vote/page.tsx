@@ -5,6 +5,7 @@ import Loading from "@/components/v0/loading";
 import AxiosErrorAlert from "@/components/v0/axios-error-alert";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Terminal } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const Vote = () => {
   const {
@@ -39,17 +40,23 @@ const Vote = () => {
   }
 
   return (
-    <div className="min-h-screen flex justify-center items-center">
-      {response.data.content.map(it => (
-        <PokemonCard
-          key={it.id}
-          id={it.id}
-          name={it.name}
-          imageUrl={it.spriteUrl}
-        />
-      ))}
+    <div>
+      <p>select</p>
+      <div className="flex justify-center gap-4">
+        {response.data.content.map(it => (
+          <div className="flex flex-col" key={it.id}>
+            <PokemonCard
+              id={it.id}
+              name={it.name}
+              imageUrl={it.spriteUrl}
+            />
+            {it.id ? <Button>Vote</Button> : <Button disabled>Vote</Button>}
+          </div>
+        ))}
 
+      </div>
     </div>
+
   );
 };
 export default Vote;

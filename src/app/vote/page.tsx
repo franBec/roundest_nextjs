@@ -3,9 +3,8 @@ import PokemonCard from "@/components/pokemon/pokemon-card";
 import { useFindAll } from "@/__generated__/api/roundest/roundestApi";
 import Loading from "@/components/v0/loading";
 import AxiosErrorAlert from "@/components/v0/axios-error-alert";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { Terminal } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import BackendSelect from "@/components/backend-select/backend-select";
 
 const Vote = () => {
   const {
@@ -29,21 +28,11 @@ const Vote = () => {
     return <AxiosErrorAlert axiosError={error} />;
   }
 
-  if(!response.data.content){
-    return <Alert>
-      <Terminal className="h-4 w-4" />
-      <AlertTitle>No content</AlertTitle>
-      <AlertDescription>
-        The response, even though is OK, it has no content.
-      </AlertDescription>
-    </Alert>
-  }
-
   return (
     <div>
-      <p>select</p>
+      <BackendSelect/>
       <div className="flex justify-center gap-4">
-        {response.data.content.map(it => (
+        {response.data.content?.map(it => (
           <div className="flex flex-col" key={it.id}>
             <PokemonCard
               id={it.id}

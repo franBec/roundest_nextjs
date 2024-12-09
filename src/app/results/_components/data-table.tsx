@@ -13,9 +13,17 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { columns } from "./data-table-columns";
-import { Pokemons } from "@/__generated__/api/roundest/model";
+import {
+  Pokemons,
+  PokemonSortProperty,
+} from "@/__generated__/api/roundest/model";
 
-export function DataTable({ data }: { readonly data: Pokemons }) {
+interface DataTableProps {
+  data: Pokemons;
+  onSort: (property: PokemonSortProperty) => void;
+}
+
+export function DataTable({ data, onSort }: DataTableProps) {
   const tableData = data.content ?? [];
 
   const table = useReactTable({
@@ -30,18 +38,24 @@ export function DataTable({ data }: { readonly data: Pokemons }) {
         <TableHeader>
           {table.getHeaderGroups().map(headerGroup => (
             <TableRow key={headerGroup.id}>
-              {headerGroup.headers.map(header => {
-                return (
-                  <TableHead key={header.id}>
-                    {header.isPlaceholder
-                      ? null
-                      : flexRender(
-                          header.column.columnDef.header,
-                          header.getContext()
-                        )}
-                  </TableHead>
-                );
-              })}
+              {headerGroup.headers.map(header => (
+                <TableHead
+                  key={header.id}
+                  onClick={() => {
+                    const columnId = header.column
+                      .id as keyof typeof PokemonSortProperty;
+                    onSort(columnId);
+                  }}
+                  className="cursor-pointer"
+                >
+                  {header.isPlaceholder
+                    ? null
+                    : flexRender(
+                        header.column.columnDef.header,
+                        header.getContext()
+                      )}
+                </TableHead>
+              ))}
             </TableRow>
           ))}
         </TableHeader>

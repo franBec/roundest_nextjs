@@ -45,7 +45,7 @@ export const BackendSelect: FC<BackendSelectProps> = ({
   return (
     <div className="flex items-center space-x-2">
       <div className="space-y-2">
-        <Label htmlFor="backend-select">Backend</Label>
+        <Label htmlFor="backend-select">Backends</Label>
         <Select onValueChange={handleChange} defaultValue={selectedBackend}>
           <SelectTrigger id="backend-select" className="w-[200px]">
             <SelectValue placeholder="Select a backend" />

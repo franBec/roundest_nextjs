@@ -11,7 +11,10 @@ const PokemonCard: FC<PokemonCardProps> = ({ id, name, imageUrl }) => {
     <div className="text-center rounded-lg shadow-2xl border-2 w-48">
       <div className="flex justify-center mb-3">
         <img
-          src={imageUrl ?? "https://upload.wikimedia.org/wikipedia/commons/7/7c/Interrogation_mark_with_material_shadows.jpg"}
+          src={
+            imageUrl ??
+            "https://upload.wikimedia.org/wikipedia/commons/7/7c/Interrogation_mark_with_material_shadows.jpg"
+          }
           alt={name ?? "Unknown Pokémon"}
           className="w-48 h-48 object-contain"
         />

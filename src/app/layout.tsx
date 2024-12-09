@@ -32,22 +32,22 @@ export default function RootLayout({
 }>) {
   return (
     <ClientProvider>
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
+      <html lang="en">
+        <body
+          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
-          <Layout>
-            <Suspense fallback={<Loading />}>{children}</Suspense>
-          </Layout>
-        </ThemeProvider>
-      </body>
-    </html>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <Layout>
+              <Suspense fallback={<Loading />}>{children}</Suspense>
+            </Layout>
+          </ThemeProvider>
+        </body>
+      </html>
     </ClientProvider>
   );
 }

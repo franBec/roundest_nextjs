@@ -1,7 +1,9 @@
 import {
   Select,
-  SelectContent, SelectGroup,
-  SelectItem, SelectLabel,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
@@ -21,7 +23,7 @@ const BackendSelect = () => {
       <SelectContent>
         <SelectGroup>
           <SelectLabel>Backends</SelectLabel>
-          {backends.map((backend) => (
+          {backends.map(backend => (
             <SelectItem key={backend.url} value={backend.url}>
               {backend.backend}
             </SelectItem>

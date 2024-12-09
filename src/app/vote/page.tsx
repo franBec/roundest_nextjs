@@ -11,14 +11,14 @@ const Vote = () => {
     isPending,
     isError,
     data: response,
-    error
+    error,
   } = useFindAll(
     {
       random: true,
-      pageSize: 2
+      pageSize: 2,
     },
-    {axios: { baseURL: process.env.NEXT_PUBLIC_API_BACKEND_JAVA }}
-  )
+    { axios: { baseURL: process.env.NEXT_PUBLIC_API_BACKEND_JAVA } }
+  );
 
   if (isPending) {
     return <Loading />;
@@ -30,22 +30,16 @@ const Vote = () => {
 
   return (
     <div>
-      <BackendSelect/>
+      <BackendSelect />
       <div className="flex justify-center gap-4">
         {response.data.content?.map(it => (
           <div className="flex flex-col" key={it.id}>
-            <PokemonCard
-              id={it.id}
-              name={it.name}
-              imageUrl={it.spriteUrl}
-            />
+            <PokemonCard id={it.id} name={it.name} imageUrl={it.spriteUrl} />
             {it.id ? <Button>Vote</Button> : <Button disabled>Vote</Button>}
           </div>
         ))}
-
       </div>
     </div>
-
   );
 };
 export default Vote;

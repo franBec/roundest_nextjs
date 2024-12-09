@@ -1,11 +1,11 @@
 "use client";
 import { useState } from "react";
 import PokemonCard from "@/components/pokemon/pokemon-card";
-import { useFindAll } from "@/__generated__/api/roundest/roundestApi";
+import { useFindAll, useIncrementPokemonVotes } from "@/__generated__/api/roundest/roundestApi";
 import AxiosErrorAlert from "@/components/v0/axios-error-alert";
 import { Button } from "@/components/ui/button";
 import { BackendSelect, Backends } from "@/components/backend-select/backend-select";
-import { RefreshCw } from 'lucide-react';
+import { RefreshCw } from "lucide-react";
 
 const Vote = () => {
   const [firstBackend] = Array.from(Backends.entries());
@@ -18,17 +18,25 @@ const Vote = () => {
     data: response,
     error,
     refetch,
-    isRefetching
+    isRefetching,
   } = useFindAll(
     {
       random: true,
       pageSize,
     },
-    { axios: { baseURL: backendUrl }}
+    { axios: { baseURL: backendUrl } }
   );
 
-  const handleRefetch = () => {
-    refetch();
+  const { mutate: incrementVote, isPending: isVoting } = useIncrementPokemonVotes(
+    { axios: { baseURL: backendUrl } }
+  );
+
+  const handleVote = (id: number) => {
+    incrementVote({ id }, {
+      onSuccess: () => {
+        refetch();
+      },
+    });
   };
 
   return (
@@ -39,11 +47,11 @@ const Vote = () => {
           <Button
             variant="ghost"
             size="icon"
-            onClick={handleRefetch}
+            onClick={()=>refetch()}
             disabled={isPending || isRefetching}
             aria-label="Refetch data"
           >
-            <RefreshCw className={`h-4 w-4 ${isRefetching ? 'animate-spin' : ''}`} />
+            <RefreshCw className={`h-4 w-4 ${isRefetching ? "animate-spin" : ""}`} />
           </Button>
         </div>
       </div>
@@ -63,7 +71,12 @@ const Vote = () => {
                 imageUrl={pokemon?.spriteUrl}
               />
               {pokemon?.id ? (
-                <Button>Vote</Button>
+                <Button
+                  onClick={() => handleVote(pokemon.id!)}
+                  disabled={isVoting}
+                >
+                  Vote
+                </Button>
               ) : (
                 <Button disabled>Vote</Button>
               )}
@@ -76,4 +89,3 @@ const Vote = () => {
 };
 
 export default Vote;
-

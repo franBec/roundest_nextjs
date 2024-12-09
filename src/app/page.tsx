@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 export default function Home() {
   return (
@@ -33,13 +34,14 @@ export default function Home() {
             The Twist: Choose Your Backend!
           </h3>
           <p className="mb-4">
-            When you vote, you can choose which backend system processes your vote.
-            Don&#39;t worry if you&#39;re not tech-savvy - this is just a fun way to show how different computer systems can work
-            together!
+            When you vote, you can choose which backend system processes your
+            vote. Don&#39;t worry if you&#39;re not tech-savvy - this is just a
+            fun way to show how different computer systems can work together!
           </p>
           <p className="">
-            No matter which backend you choose, all votes end up in the same place. It&#39;s like mailing a letter - you can
-            use different post offices, but they all reach the same destination!
+            No matter which backend you choose, all votes end up in the same
+            place. It&#39;s like mailing a letter - you can use different post
+            offices, but they all reach the same destination!
           </p>
         </section>
 
@@ -50,40 +52,29 @@ export default function Home() {
             or see the current standings!
           </p>
           <div className="flex justify-center space-x-4">
-            <Link
-              href="/vote"
-              className="border border-foreground text-foreground px-4 py-2 rounded hover:bg-foreground hover:text-background transition-colors duration-200"
-            >
-              Vote Now
-            </Link>
-            <Link
-              href="/results"
-              className="border border-foreground text-foreground px-4 py-2 rounded hover:bg-foreground hover:text-background transition-colors duration-200"
-            >
-              See Results
-            </Link>
+            <Button asChild>
+              <Link href="/vote">Vote Now</Link>
+            </Button>
+            <Button asChild variant="secondary">
+              <Link href="/results">See Results</Link>
+            </Button>
           </div>
         </section>
 
         <section className="p-6 shadow border-2 rounded-lg">
           <h3 className="text-2xl font-bold mb-4">More Information</h3>
           <p className="mb-4">
-            Curious about how this works? Or want to know more about the creator?
-            Explore these links:
+            Curious about how this works? Or want to know more about the
+            creator? Explore these links:
           </p>
           <div className="flex space-x-4">
-            <Link
-              href="/code"
-              className="border border-foreground text-foreground px-4 py-2 rounded hover:bg-foreground hover:text-background transition-colors duration-200"
-            >
-              View Code
-            </Link>
-            <Link
-              href="/author"
-              className="border border-foreground text-foreground px-4 py-2 rounded hover:bg-foreground hover:text-background transition-colors duration-200"
-            >
-              About the Author
-            </Link>
+            <Button asChild variant="secondary">
+              <Link href="/code">View Code</Link>
+            </Button>
+
+            <Button asChild variant="secondary">
+              <Link href="/author">About the Author</Link>
+            </Button>
           </div>
         </section>
       </main>

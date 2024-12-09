@@ -2,11 +2,19 @@
 
 import React from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation"; // To get the current URI
+import { usePathname } from "next/navigation";
 import { ModeToggle } from "@/components/dark-mode/mode-toogle";
+import { Button } from "@/components/ui/button";
 
 export const Header = () => {
-  const pathname = usePathname(); // Fetch the current path
+  const pathname = usePathname();
+
+  const navLinks = [
+    { href: "/vote", label: "Vote" },
+    { href: "/results", label: "Results" },
+    { href: "/code", label: "Code" },
+    { href: "/author", label: "Author" },
+  ];
 
   return (
     <header className="p-4 border-b border-gray-200">
@@ -17,21 +25,17 @@ export const Header = () => {
           </Link>
         </h1>
         <ul className="flex space-x-4 items-end">
-          {[
-            { href: "/vote", label: "Vote" },
-            { href: "/results", label: "Results" },
-            { href: "/code", label: "Code" },
-            { href: "/author", label: "Author" },
-          ].map(link => (
+          {navLinks.map(link => (
             <li key={link.href}>
-              <Link
-                href={link.href}
-                className={`hover:underline transition-colors duration-200 ${
+              <Button
+                asChild
+                variant="link"
+                className={`${
                   !pathname.startsWith(link.href) && "text-gray-500"
                 }`}
               >
-                {link.label}
-              </Link>
+                <Link href={link.href}>{link.label}</Link>
+              </Button>
             </li>
           ))}
           <li>

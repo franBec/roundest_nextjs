@@ -1,17 +1,23 @@
 "use client";
 import { useState } from "react";
 import PokemonCard from "@/components/pokemon/pokemon-card";
-import { useFindAll, useIncrementPokemonVotes } from "@/__generated__/api/roundest/roundestApi";
+import {
+  useFindAll,
+  useIncrementPokemonVotes,
+} from "@/__generated__/api/roundest/roundestApi";
 import AxiosErrorAlert from "@/components/v0/axios-error-alert";
 import { Button } from "@/components/ui/button";
-import { BackendSelect, Backends } from "@/components/backend-select/backend-select";
+import {
+  BackendSelect,
+  Backends,
+} from "@/components/backend-select/backend-select";
 import { RefreshCw } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 const Vote = () => {
   const [firstBackend] = Array.from(Backends.entries());
   const [backendUrl, setBackendUrl] = useState<string>(firstBackend[1]);
-  const { toast } = useToast()
+  const { toast } = useToast();
 
   const pageSize = 2;
   const {
@@ -29,9 +35,8 @@ const Vote = () => {
     { axios: { baseURL: backendUrl } }
   );
 
-  const { mutate: incrementVote, isPending: isVoting } = useIncrementPokemonVotes(
-    { axios: { baseURL: backendUrl } }
-  );
+  const { mutate: incrementVote, isPending: isVoting } =
+    useIncrementPokemonVotes({ axios: { baseURL: backendUrl } });
 
   const handleVote = (id: number) => {
     incrementVote(
@@ -40,13 +45,13 @@ const Vote = () => {
         onSuccess: () => {
           toast({
             description: "Vote sent!",
-          })
+          });
         },
         onError: () => {
           toast({
             variant: "destructive",
             description: "Uh oh! Something went wrong.",
-          })
+          });
         },
         onSettled: () => {
           refetch();
@@ -63,11 +68,13 @@ const Vote = () => {
           <Button
             variant="ghost"
             size="icon"
-            onClick={()=>refetch()}
+            onClick={() => refetch()}
             disabled={isPending || isRefetching}
             aria-label="Refetch data"
           >
-            <RefreshCw className={`h-4 w-4 ${isRefetching ? "animate-spin" : ""}`} />
+            <RefreshCw
+              className={`h-4 w-4 ${isRefetching ? "animate-spin" : ""}`}
+            />
           </Button>
         </div>
       </div>

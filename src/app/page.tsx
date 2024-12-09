@@ -12,7 +12,15 @@ export default function Home() {
           A fun game to find the roundest Pokémon in the universe!
         </p>
         <p className="text-md text-gray-500">
-          {"~ "}Inspired by Theo&#39;s &#34;<a href="https://youtu.be/O-EWIlZW0mM?si=wZ6OFGzOAtcEeNPs" target='_blank' className="underline">I built the same app with 5 different stacks&#34;</a> video{" ~"}
+          {"~ "}Inspired by Theo&#39;s &#34;
+          <a
+            href="https://youtu.be/O-EWIlZW0mM?si=wZ6OFGzOAtcEeNPs"
+            target="_blank"
+            className="underline"
+          >
+            I built the same app with 5 different stacks&#34;
+          </a>{" "}
+          video{" ~"}
         </p>
       </header>
 

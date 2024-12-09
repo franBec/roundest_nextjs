@@ -4,9 +4,10 @@ import "./globals.css";
 import Layout from "@/components/layout/layout";
 import { ThemeProvider } from "@/components/dark-mode/theme-provider";
 import ClientProvider from "@/components/react-query/client-provider";
-import React, { Suspense } from "react";
+import { Suspense } from "react";
 import Loading from "@/components/v0/loading";
 import { Toaster } from "@/components/ui/toaster";
+import { NuqsAdapter } from "nuqs/adapters/next/app";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -37,17 +38,19 @@ export default function RootLayout({
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            <Layout>
-              <Suspense fallback={<Loading />}>{children}</Suspense>
-            </Layout>
-            <Toaster />
-          </ThemeProvider>
+          <NuqsAdapter>
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="system"
+              enableSystem
+              disableTransitionOnChange
+            >
+              <Layout>
+                <Suspense fallback={<Loading />}>{children}</Suspense>
+              </Layout>
+              <Toaster />
+            </ThemeProvider>
+          </NuqsAdapter>
         </body>
       </html>
     </ClientProvider>

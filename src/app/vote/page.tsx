@@ -38,6 +38,7 @@ const Vote = () => {
           isRefetching={isRefetching}
         />
       </div>
+      <hr className="w-full max-w-md mb-4 border-secondary-foreground" />
       {isError && <AxiosErrorAlert axiosError={error} />}
       {!isError && (
         <PokemonCandidates

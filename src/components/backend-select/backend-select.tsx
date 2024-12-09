@@ -43,9 +43,11 @@ export const BackendSelect: FC<BackendSelectProps> = ({
   };
 
   return (
-    <div className="flex items-center space-x-2">
+    <div className="flex items-end space-x-2">
       <div className="space-y-2">
-        <Label htmlFor="backend-select">Backends</Label>
+        <Label htmlFor="backend-select">
+          Choose a backend to process your request
+        </Label>
         <Select onValueChange={handleChange} defaultValue={selectedBackend}>
           <SelectTrigger id="backend-select" className="w-[200px]">
             <SelectValue placeholder="Select a backend" />
@@ -61,9 +63,6 @@ export const BackendSelect: FC<BackendSelectProps> = ({
             </SelectGroup>
           </SelectContent>
         </Select>
-        <p className="text-sm text-muted-foreground">
-          Choose a backend to process your request
-        </p>
       </div>
       <Button
         variant="outline"

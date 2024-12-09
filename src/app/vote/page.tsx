@@ -5,6 +5,7 @@ import { useFindAll } from "@/__generated__/api/roundest/roundestApi";
 import AxiosErrorAlert from "@/components/v0/axios-error-alert";
 import { Button } from "@/components/ui/button";
 import { BackendSelect, Backends } from "@/components/backend-select/backend-select";
+import { RefreshCw } from 'lucide-react';
 
 const Vote = () => {
   const [firstBackend] = Array.from(Backends.entries());
@@ -16,23 +17,40 @@ const Vote = () => {
     isError,
     data: response,
     error,
+    refetch,
+    isRefetching
   } = useFindAll(
     {
       random: true,
       pageSize,
     },
-    { axios: { baseURL: backendUrl } }
+    { axios: { baseURL: backendUrl }}
   );
+
+  const handleRefetch = () => {
+    refetch();
+  };
 
   return (
     <div className="flex flex-col items-center">
       <div className="w-full max-w-md py-4 flex justify-center">
-        <BackendSelect onSelect={setBackendUrl} />
+        <div className="flex items-center space-x-2">
+          <BackendSelect onSelect={setBackendUrl} />
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={handleRefetch}
+            disabled={isPending || isRefetching}
+            aria-label="Refetch data"
+          >
+            <RefreshCw className={`h-4 w-4 ${isRefetching ? 'animate-spin' : ''}`} />
+          </Button>
+        </div>
       </div>
       {isError && <AxiosErrorAlert axiosError={error} />}
       <div className="flex justify-center gap-4">
         {Array.from({ length: pageSize }).map((_, index) => {
-          if (isPending) {
+          if (isPending || isRefetching) {
             return <PokemonCard key={index} isPending />;
           }
 
@@ -58,3 +76,4 @@ const Vote = () => {
 };
 
 export default Vote;
+

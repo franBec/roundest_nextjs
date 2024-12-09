@@ -7,11 +7,7 @@ interface PokemonImageProps {
   size: number;
 }
 
-const PokemonImage: FC<PokemonImageProps> = ({
-                                               src,
-                                               alt,
-                                               size,
-                                             }) => {
+const PokemonImage: FC<PokemonImageProps> = ({ src, alt, size }) => {
   const fallbackImageUrl =
     "https://upload.wikimedia.org/wikipedia/commons/7/7c/Interrogation_mark_with_material_shadows.jpg";
 

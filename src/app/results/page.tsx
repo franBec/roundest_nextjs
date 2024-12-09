@@ -15,13 +15,13 @@ const Results = () => {
     "pageNumber",
     parseAsInteger.withDefault(1)
   );
-  const [sortProperty] = useQueryState(
+  const [sortProperty, setSortProperty] = useQueryState(
     "sortProperty",
     parseAsStringLiteral(Object.values(PokemonSortProperty)).withDefault(
       "votes"
     )
   );
-  const [sortDirection] = useQueryState(
+  const [sortDirection, setSortDirection] = useQueryState(
     "sortDirection",
     parseAsStringLiteral(Object.values(SortDirection)).withDefault("DESC")
   );
@@ -51,8 +51,10 @@ const Results = () => {
     return <AxiosErrorAlert axiosError={error} />;
   }
 
-  return <div className="container mx-auto flex flex-col space-y-4">
-    <DataTable data={response.data} />
-  </div>
-    };
-    export default Results;
+  return (
+    <div className="container mx-auto flex flex-col space-y-4">
+      <DataTable data={response.data} />
+    </div>
+  );
+};
+export default Results;

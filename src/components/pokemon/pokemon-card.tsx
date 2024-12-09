@@ -9,11 +9,11 @@ interface PokemonCardProps {
 }
 
 const PokemonCard: FC<PokemonCardProps> = ({
-                                             isPending,
-                                             id,
-                                             name,
-                                             imageUrl,
-                                           }) => {
+  isPending,
+  id,
+  name,
+  imageUrl,
+}) => {
   if (isPending) {
     return (
       <div className="text-center rounded-lg shadow-2xl border-2 w-48 animate-pulse">

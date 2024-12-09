@@ -1,5 +1,3 @@
-"use client";
-
 import {
   flexRender,
   getCoreRowModel,
@@ -14,7 +12,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { columns } from "../_utils/table-column-utils";
+import { columns } from "./data-table-columns";
 import { Pokemons } from "@/__generated__/api/roundest/model";
 
 export function DataTable({ data }: { readonly data: Pokemons }) {

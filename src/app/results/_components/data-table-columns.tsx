@@ -11,7 +11,8 @@ export const columns = [
       const spriteUrl = cellContext.row.original.spriteUrl;
       const name = cellContext.row.original.name;
       return <PokemonImage src={spriteUrl} alt={name} size={52} />;
-    },}),
+    },
+  }),
   columnHelper.accessor("id", {
     header: () => "#",
   }),

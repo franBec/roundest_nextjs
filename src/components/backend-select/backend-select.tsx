@@ -9,6 +9,8 @@ import {
 } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
 import { FC, useState } from "react";
+import { RefreshCw } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 export const Backends = new Map<string, string>([
   ["java", "http://localhost:8080"],
@@ -17,44 +19,63 @@ export const Backends = new Map<string, string>([
 ]);
 
 interface BackendSelectProps {
-  onSelect?: (url: string) => void;
+  onSelectCallback: (url: string) => void;
+  refetch: () => void;
+  isPending: boolean;
+  isRefetching: boolean;
 }
 
 const toCapitalCase = (str: string) =>
   str.charAt(0).toUpperCase() + str.slice(1);
 
-export const BackendSelect: FC<BackendSelectProps> = ({ onSelect }) => {
+export const BackendSelect: FC<BackendSelectProps> = ({
+  isPending,
+  isRefetching,
+  onSelectCallback,
+  refetch,
+}) => {
   const [firstBackend] = Array.from(Backends.entries());
   const [selectedBackend, setSelectedBackend] = useState(firstBackend[1]);
 
   const handleChange = (url: string) => {
     setSelectedBackend(url);
-    if (onSelect) {
-      onSelect(url);
-    }
+    onSelectCallback(url);
   };
 
   return (
-    <div className="space-y-2">
-      <Label htmlFor="backend-select">Backend</Label>
-      <Select onValueChange={handleChange} defaultValue={selectedBackend}>
-        <SelectTrigger id="backend-select" className="w-[200px]">
-          <SelectValue placeholder="Select a backend" />
-        </SelectTrigger>
-        <SelectContent>
-          <SelectGroup>
-            <SelectLabel>Backends</SelectLabel>
-            {Array.from(Backends.entries()).map(([backend, url]) => (
-              <SelectItem key={url} value={url}>
-                {toCapitalCase(backend)}
-              </SelectItem>
-            ))}
-          </SelectGroup>
-        </SelectContent>
-      </Select>
-      <p className="text-sm text-muted-foreground">
-        Choose a backend to process your request
-      </p>
+    <div className="flex items-center space-x-2">
+      <div className="space-y-2">
+        <Label htmlFor="backend-select">Backend</Label>
+        <Select onValueChange={handleChange} defaultValue={selectedBackend}>
+          <SelectTrigger id="backend-select" className="w-[200px]">
+            <SelectValue placeholder="Select a backend" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectGroup>
+              <SelectLabel>Backends</SelectLabel>
+              {Array.from(Backends.entries()).map(([backend, url]) => (
+                <SelectItem key={url} value={url}>
+                  {toCapitalCase(backend)}
+                </SelectItem>
+              ))}
+            </SelectGroup>
+          </SelectContent>
+        </Select>
+        <p className="text-sm text-muted-foreground">
+          Choose a backend to process your request
+        </p>
+      </div>
+      <Button
+        variant="outline"
+        size="icon"
+        onClick={() => refetch()}
+        disabled={isPending || isRefetching}
+        aria-label="Refetch data"
+      >
+        <RefreshCw
+          className={`h-4 w-4 ${isRefetching ? "animate-spin" : ""}`}
+        />
+      </Button>
     </div>
   );
 };

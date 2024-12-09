@@ -8,9 +8,8 @@ import { Button } from "@/components/ui/button";
 import { BackendSelect, Backends } from "@/components/backend-select/backend-select";
 
 const Vote = () => {
-  const [backendUrl, setBackendUrl] = useState<string>(
-    Backends.get("java") || ""
-  );
+  const [firstBackend] = Array.from(Backends.entries());
+  const [backendUrl, setBackendUrl] = useState<string>(firstBackend[1]);
 
   const {
     isPending,
@@ -34,8 +33,10 @@ const Vote = () => {
   }
 
   return (
-    <div>
-      <BackendSelect onSelect={setBackendUrl} />
+    <div className="flex flex-col items-center">
+      <div className="w-full max-w-md py-4 flex justify-center">
+        <BackendSelect onSelect={setBackendUrl} />
+      </div>
       <div className="flex justify-center gap-4">
         {response.data.content?.map(it => (
           <div className="flex flex-col" key={it.id}>

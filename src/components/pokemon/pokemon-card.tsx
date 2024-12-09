@@ -1,5 +1,5 @@
 import { FC } from "react";
-import Image from "next/image";
+import PokemonImage from "@/components/pokemon/pokemon-image";
 
 interface PokemonCardProps {
   isPending?: boolean;
@@ -9,14 +9,11 @@ interface PokemonCardProps {
 }
 
 const PokemonCard: FC<PokemonCardProps> = ({
-  isPending,
-  id,
-  name,
-  imageUrl,
-}) => {
-  const fallbackImageUrl =
-    "https://upload.wikimedia.org/wikipedia/commons/7/7c/Interrogation_mark_with_material_shadows.jpg";
-
+                                             isPending,
+                                             id,
+                                             name,
+                                             imageUrl,
+                                           }) => {
   if (isPending) {
     return (
       <div className="text-center rounded-lg shadow-2xl border-2 w-48 animate-pulse">
@@ -34,13 +31,7 @@ const PokemonCard: FC<PokemonCardProps> = ({
   return (
     <div className="text-center rounded-lg shadow-2xl border-2 w-48">
       <div className="flex justify-center mb-3">
-        <Image
-          src={imageUrl ?? fallbackImageUrl}
-          alt={name ?? "Unknown Pokémon"}
-          width={192}
-          height={192}
-          className="object-contain"
-        />
+        <PokemonImage src={imageUrl} alt={name} size={192} />
       </div>
       <p className="text-gray-400 text-sm">#{id ?? "-"}</p>
       <h2 className="font-semibold text-lg">{name ?? "-"}</h2>

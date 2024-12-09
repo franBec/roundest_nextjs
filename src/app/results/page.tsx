@@ -7,6 +7,7 @@ import {
 import { useFindAll } from "@/__generated__/api/roundest/roundestApi";
 import Loading from "@/components/v0/loading";
 import AxiosErrorAlert from "@/components/v0/axios-error-alert";
+import { DataTable } from "@/app/results/_components/data-table";
 
 const Results = () => {
   const [q] = useQueryState("q");
@@ -24,11 +25,10 @@ const Results = () => {
     "sortDirection",
     parseAsStringLiteral(Object.values(SortDirection)).withDefault("DESC")
   );
-  const pageSize = process.env.NEXT_PUBLIC_API_USERS_PAGE_SIZE;
 
   const findAllParams = {
     pageNumber: pageNumber - 1,
-    pageSize: pageSize ? parseInt(pageSize) : undefined,
+    pageSize: 5,
     sortProperty,
     sortDirection,
     q: q ?? undefined,
@@ -51,6 +51,8 @@ const Results = () => {
     return <AxiosErrorAlert axiosError={error} />;
   }
 
-  return <p>{JSON.stringify(response, null, 2)}</p>;
-};
-export default Results;
+  return <div className="container mx-auto flex flex-col space-y-4">
+    <DataTable data={response.data} />
+  </div>
+    };
+    export default Results;

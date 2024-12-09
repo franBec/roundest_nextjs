@@ -6,6 +6,7 @@ import { ThemeProvider } from "@/components/dark-mode/theme-provider";
 import ClientProvider from "@/components/react-query/client-provider";
 import React, { Suspense } from "react";
 import Loading from "@/components/v0/loading";
+import { Toaster } from "@/components/ui/toaster";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -45,6 +46,7 @@ export default function RootLayout({
             <Layout>
               <Suspense fallback={<Loading />}>{children}</Suspense>
             </Layout>
+            <Toaster />
           </ThemeProvider>
         </body>
       </html>

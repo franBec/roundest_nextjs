@@ -6,10 +6,12 @@ import AxiosErrorAlert from "@/components/v0/axios-error-alert";
 import { Button } from "@/components/ui/button";
 import { BackendSelect, Backends } from "@/components/backend-select/backend-select";
 import { RefreshCw } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
 
 const Vote = () => {
   const [firstBackend] = Array.from(Backends.entries());
   const [backendUrl, setBackendUrl] = useState<string>(firstBackend[1]);
+  const { toast } = useToast()
 
   const pageSize = 2;
   const {
@@ -32,11 +34,25 @@ const Vote = () => {
   );
 
   const handleVote = (id: number) => {
-    incrementVote({ id }, {
-      onSuccess: () => {
-        refetch();
-      },
-    });
+    incrementVote(
+      { id },
+      {
+        onSuccess: () => {
+          toast({
+            description: "Vote sent!",
+          })
+        },
+        onError: () => {
+          toast({
+            variant: "destructive",
+            description: "Uh oh! Something went wrong.",
+          })
+        },
+        onSettled: () => {
+          refetch();
+        },
+      }
+    );
   };
 
   return (

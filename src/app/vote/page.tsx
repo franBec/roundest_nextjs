@@ -29,7 +29,7 @@ const Page = () => {
   );
 
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-center space-y-4">
       <div className="w-full max-w-md flex justify-center">
         <BackendSelect
           onSelectCallback={setBackendUrl}
@@ -38,7 +38,6 @@ const Page = () => {
           isRefetching={isRefetching}
         />
       </div>
-      <hr className="w-full max-w-md mb-4 border-secondary-foreground" />
       {isError && <AxiosErrorAlert axiosError={error} />}
       {!isError && (
         <PokemonCandidates

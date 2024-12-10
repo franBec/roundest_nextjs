@@ -43,38 +43,47 @@ export const BackendSelect: FC<BackendSelectProps> = ({
   };
 
   return (
-    <div className="flex items-end space-x-2">
-      <div className="space-y-2">
-        <Label htmlFor="backend-select">
-          Choose a backend to process your request
-        </Label>
-        <Select onValueChange={handleChange} defaultValue={selectedBackend}>
-          <SelectTrigger id="backend-select" className="w-[200px]">
-            <SelectValue placeholder="Select a backend" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectGroup>
-              <SelectLabel>Backends</SelectLabel>
-              {Array.from(Backends.entries()).map(([backend, url]) => (
-                <SelectItem key={url} value={url}>
-                  {toCapitalCase(backend)}
-                </SelectItem>
-              ))}
-            </SelectGroup>
-          </SelectContent>
-        </Select>
+    <div className="flex flex-col items-center space-y-4">
+      <div className="flex items-center space-x-2">
+        <div className="space-y-2">
+          <Label htmlFor="backend-select">
+            Choose a backend to process your request
+          </Label>
+          <div className="flex items-center space-x-2">
+            <Select onValueChange={handleChange} defaultValue={selectedBackend}>
+              <SelectTrigger id="backend-select" className="w-[200px]">
+                <SelectValue placeholder="Select a backend" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectGroup>
+                  <SelectLabel>Backends</SelectLabel>
+                  {Array.from(Backends.entries()).map(([backend, url]) => (
+                    <SelectItem key={url} value={url}>
+                      {toCapitalCase(backend)}
+                    </SelectItem>
+                  ))}
+                </SelectGroup>
+              </SelectContent>
+            </Select>
+            <Button
+              variant="outline"
+              size="icon"
+              onClick={() => refetch()}
+              disabled={isPending || isRefetching}
+              aria-label="Refetch data"
+            >
+              <RefreshCw
+                className={`h-4 w-4 ${isRefetching ? "animate-spin" : ""}`}
+              />
+            </Button>
+          </div>
+        </div>
       </div>
-      <Button
-        variant="outline"
-        size="icon"
-        onClick={() => refetch()}
-        disabled={isPending || isRefetching}
-        aria-label="Refetch data"
-      >
-        <RefreshCw
-          className={`h-4 w-4 ${isRefetching ? "animate-spin" : ""}`}
-        />
-      </Button>
+      <p className="w-full max-w-md text-sm text-muted-foreground text-centes">
+        Votes are stored in the same database, no matter the backend that processes the vote or the backend used for
+        querying the results.
+      </p>
     </div>
   );
+
 };

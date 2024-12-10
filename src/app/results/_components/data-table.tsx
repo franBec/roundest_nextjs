@@ -3,7 +3,12 @@ import {
   getCoreRowModel,
   useReactTable,
 } from "@tanstack/react-table";
-
+import {
+  Pokemons,
+  PokemonSortProperty,
+  SortDirection,
+} from "@/__generated__/api/roundest/model";
+import { columns } from "@/app/results/_components/data-table-columns";
 import {
   Table,
   TableBody,
@@ -12,12 +17,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { columns } from "./data-table-columns";
-import {
-  Pokemons,
-  PokemonSortProperty,
-  SortDirection,
-} from "@/__generated__/api/roundest/model";
+import { ChevronDown, ChevronUp } from "lucide-react";
 
 interface DataTableProps {
   data: Pokemons;
@@ -71,7 +71,13 @@ export function DataTable({
                             header.getContext()
                           )}
                       {isSorted && canSort && (
-                        <span>{sortDirection === "ASC" ? "↑" : "↓"}</span>
+                        <span className="ml-2">
+                          {sortDirection === "ASC" ? (
+                            <ChevronUp size={16} />
+                          ) : (
+                            <ChevronDown size={16} />
+                          )}
+                        </span>
                       )}
                     </div>
                   </TableHead>

@@ -18,6 +18,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { ChevronDown, ChevronUp } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 interface DataTableProps {
   data: Pokemon[];
@@ -52,32 +53,37 @@ export function DataTable({
                 return (
                   <TableHead
                     key={header.id}
-                    onClick={() => {
-                      if (canSort) {
-                        onSort(columnId);
-                      }
-                    }}
-                    className={`cursor-pointer ${
-                      canSort ? "hover:underline" : "cursor-default"
-                    }`}
+                    className="cursor-pointer"
                   >
-                    <div className="flex items-center space-x-2">
-                      {header.isPlaceholder
-                        ? null
-                        : flexRender(
+                    {canSort ? (
+                      <Button
+                        onClick={() => onSort(columnId)}
+                        variant="ghost"
+                      >
+                        <span>
+                          {flexRender(
                             header.column.columnDef.header,
                             header.getContext()
                           )}
-                      {isSorted && canSort && (
-                        <span className="ml-2">
-                          {sortDirection === "ASC" ? (
-                            <ChevronUp size={16} />
-                          ) : (
-                            <ChevronDown size={16} />
-                          )}
                         </span>
-                      )}
-                    </div>
+                        {isSorted && (
+                          <span className="ml-2">
+                            {sortDirection === "ASC" ? (
+                              <ChevronUp size={16} />
+                            ) : (
+                              <ChevronDown size={16} />
+                            )}
+                          </span>
+                        )}
+                      </Button>
+                    ) : (
+                      <span>
+                        {flexRender(
+                          header.column.columnDef.header,
+                          header.getContext()
+                        )}
+                      </span>
+                    )}
                   </TableHead>
                 );
               })}

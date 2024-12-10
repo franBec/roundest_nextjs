@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
-export default function Home() {
+export default function Page() {
   return (
     <div className="min-h-screen p-8">
       <header className="text-center mb-12">

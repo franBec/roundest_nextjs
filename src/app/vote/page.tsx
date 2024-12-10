@@ -8,7 +8,7 @@ import {
 } from "@/components/backend-select/backend-select";
 import PokemonCandidates from "@/app/vote/_components/pokemon-candidates";
 
-const Vote = () => {
+const Page = () => {
   const [firstBackend] = Array.from(Backends.entries());
   const [backendUrl, setBackendUrl] = useState<string>(firstBackend[1]);
 
@@ -30,7 +30,7 @@ const Vote = () => {
 
   return (
     <div className="flex flex-col items-center">
-      <div className="w-full max-w-md py-4 flex justify-center">
+      <div className="w-full max-w-md flex justify-center">
         <BackendSelect
           onSelectCallback={setBackendUrl}
           refetch={refetch}
@@ -53,4 +53,4 @@ const Vote = () => {
   );
 };
 
-export default Vote;
+export default Page;

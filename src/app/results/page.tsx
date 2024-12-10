@@ -10,8 +10,10 @@ import AxiosErrorAlert from "@/components/v0/axios-error-alert";
 import { DataTable } from "@/app/results/_components/data-table";
 import { DataTablePagination } from "@/components/pagination/data-table-pagination";
 import { calculateTotalPages } from "@/app/results/_utils/utils";
+import { Backends, BackendSelect } from "@/components/backend-select/backend-select";
+import { useState } from "react";
 
-const Results = () => {
+const Page = () => {
   const [q] = useQueryState("q");
   const [pageNumber, setPageNumber] = useQueryState(
     "pageNumber",
@@ -27,6 +29,8 @@ const Results = () => {
     "sortDirection",
     parseAsStringLiteral(Object.values(SortDirection)).withDefault("DESC")
   );
+  const [firstBackend] = Array.from(Backends.entries());
+  const [backendUrl, setBackendUrl] = useState<string>(firstBackend[1]);
 
   const findAllParams = {
     pageNumber: pageNumber - 1,
@@ -41,8 +45,10 @@ const Results = () => {
     error,
     isError,
     isPending,
+    isRefetching,
+    refetch,
   } = useFindAll(findAllParams, {
-    axios: { baseURL: "http://localhost:8080" },
+    axios: { baseURL: backendUrl },
   });
 
   const handleSort = (property: PokemonSortProperty) => {
@@ -60,22 +66,32 @@ const Results = () => {
 
   const totalPages = calculateTotalPages(response.data);
   return (
-    <div className="container mx-auto flex flex-col space-y-4">
-      <DataTable
-        data={response.data.content ?? []}
-        onSort={handleSort}
-        sortProperty={sortProperty}
-        sortDirection={sortDirection}
-      />
-      {totalPages && (
-        <DataTablePagination
-          onPageChange={setPageNumber}
-          pageNumber={pageNumber}
-          totalPages={totalPages}
+    <div className="container mx-auto space-y-4">
+      <div className="flex flex-col items-center">
+        <BackendSelect
+          onSelectCallback={setBackendUrl}
+          refetch={refetch}
+          isPending={isPending}
+          isRefetching={isRefetching}
         />
-      )}
+      </div>
+      <div className="space-y-4">
+        <DataTable
+          data={response.data.content ?? []}
+          onSort={handleSort}
+          sortProperty={sortProperty}
+          sortDirection={sortDirection}
+        />
+        {totalPages && (
+          <DataTablePagination
+            onPageChange={setPageNumber}
+            pageNumber={pageNumber}
+            totalPages={totalPages}
+          />
+        )}
+      </div>
     </div>
   );
 };
 
-export default Results;
+export default Page;

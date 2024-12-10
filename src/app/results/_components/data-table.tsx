@@ -60,15 +60,14 @@ export function DataTable({
                             header.getContext()
                           )}
                         </span>
-                        {isSorted && (
-                          <span className="ml-2">
-                            {sortDirection === "ASC" ? (
+                        <span className="ml-2 inline-block w-4">
+                          {isSorted &&
+                            (sortDirection === "ASC" ? (
                               <ChevronUp size={16} />
                             ) : (
                               <ChevronDown size={16} />
-                            )}
-                          </span>
-                        )}
+                            ))}
+                        </span>
                       </Button>
                     ) : (
                       <span>

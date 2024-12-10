@@ -16,20 +16,32 @@ import { columns } from "./data-table-columns";
 import {
   Pokemons,
   PokemonSortProperty,
+  SortDirection,
 } from "@/__generated__/api/roundest/model";
 
 interface DataTableProps {
   data: Pokemons;
+  sortProperty: PokemonSortProperty;
+  sortDirection: SortDirection;
   onSort: (property: PokemonSortProperty) => void;
 }
 
-export function DataTable({ data, onSort }: DataTableProps) {
+export function DataTable({
+  data,
+  sortProperty,
+  sortDirection,
+  onSort,
+}: DataTableProps) {
   const tableData = data.content ?? [];
 
   const table = useReactTable({
     data: tableData,
     columns,
     getCoreRowModel: getCoreRowModel(),
+    defaultColumn: {
+      minSize: 50,
+      maxSize: 300,
+    },
   });
 
   return (
@@ -38,24 +50,30 @@ export function DataTable({ data, onSort }: DataTableProps) {
         <TableHeader>
           {table.getHeaderGroups().map(headerGroup => (
             <TableRow key={headerGroup.id}>
-              {headerGroup.headers.map(header => (
-                <TableHead
-                  key={header.id}
-                  onClick={() => {
-                    const columnId = header.column
-                      .id as keyof typeof PokemonSortProperty;
-                    onSort(columnId);
-                  }}
-                  className="cursor-pointer"
-                >
-                  {header.isPlaceholder
-                    ? null
-                    : flexRender(
-                        header.column.columnDef.header,
-                        header.getContext()
+              {headerGroup.headers.map(header => {
+                const columnId = header.column.id as PokemonSortProperty;
+                const isSorted = sortProperty === columnId;
+
+                return (
+                  <TableHead
+                    key={header.id}
+                    onClick={() => onSort(columnId)}
+                    className="cursor-pointer"
+                  >
+                    <div className="flex items-center space-x-2">
+                      {header.isPlaceholder
+                        ? null
+                        : flexRender(
+                            header.column.columnDef.header,
+                            header.getContext()
+                          )}
+                      {isSorted && (
+                        <span>{sortDirection === "ASC" ? "↑" : "↓"}</span>
                       )}
-                </TableHead>
-              ))}
+                    </div>
+                  </TableHead>
+                );
+              })}
             </TableRow>
           ))}
         </TableHeader>
@@ -67,7 +85,12 @@ export function DataTable({ data, onSort }: DataTableProps) {
                 data-state={row.getIsSelected() && "selected"}
               >
                 {row.getVisibleCells().map(cell => (
-                  <TableCell key={cell.id}>
+                  <TableCell
+                    key={cell.id}
+                    style={{
+                      width: cell.column.getSize(),
+                    }}
+                  >
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </TableCell>
                 ))}

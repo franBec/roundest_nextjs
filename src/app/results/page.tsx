@@ -43,8 +43,8 @@ const Results = () => {
     axios: { baseURL: "http://localhost:8080" },
   });
 
-  const handleSort = (property: keyof typeof PokemonSortProperty) => {
-    setSortProperty(PokemonSortProperty[property]);
+  const handleSort = (property: PokemonSortProperty) => {
+    setSortProperty(property);
     setSortDirection(sortDirection === "ASC" ? "DESC" : "ASC");
   };
 
@@ -58,7 +58,12 @@ const Results = () => {
 
   return (
     <div className="container mx-auto flex flex-col space-y-4">
-      <DataTable data={response.data} onSort={handleSort} />
+      <DataTable
+        data={response.data}
+        sortProperty={sortProperty}
+        sortDirection={sortDirection}
+        onSort={handleSort}
+      />
     </div>
   );
 };

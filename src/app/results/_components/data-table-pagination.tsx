@@ -10,32 +10,16 @@ import {
 import { DataTablePaginationItems } from "./data-table-pagination-items";
 
 interface TablePaginationProps {
-  pageNumber?: number;
-  pageSize?: number;
-  total?: number;
-  handlePageChange?: (newPageNumber: number) => void;
+  onPageChange: (newPageNumber: number) => void;
+  pageNumber: number;
+  totalPages: number;
 }
 
 export function DataTablePagination({
-                                      handlePageChange,
-                                      pageNumber,
-                                      pageSize,
-                                      total,
-                                    }: Readonly<TablePaginationProps>) {
-  if (
-    !pageNumber ||
-    pageNumber < 1 ||
-    !pageSize ||
-    pageSize < 1 ||
-    !total ||
-    total < 1 ||
-    !handlePageChange
-  ) {
-    return <p>Pagination not available</p>;
-  }
-
-  const totalPages = Math.ceil(total / pageSize);
-
+  onPageChange,
+  pageNumber,
+  totalPages,
+}: Readonly<TablePaginationProps>) {
   const shouldShowFirstPage = pageNumber > 3;
   const shouldShowLastPage = pageNumber < totalPages - 2;
 
@@ -45,14 +29,14 @@ export function DataTablePagination({
         <PaginationItem>
           <PaginationPrevious
             href="#"
-            onClick={() => handlePageChange(Math.max(1, pageNumber - 1))}
+            onClick={() => onPageChange(Math.max(1, pageNumber - 1))}
             aria-disabled={pageNumber === 1}
           />
         </PaginationItem>
         {shouldShowFirstPage && (
           <>
             <PaginationItem>
-              <PaginationLink href="#" onClick={() => handlePageChange(1)}>
+              <PaginationLink href="#" onClick={() => onPageChange(1)}>
                 1
               </PaginationLink>
             </PaginationItem>
@@ -62,16 +46,13 @@ export function DataTablePagination({
         <DataTablePaginationItems
           pageNumber={pageNumber}
           totalPages={totalPages}
-          handlePageChange={handlePageChange}
+          onPageChange={onPageChange}
         />
         {shouldShowLastPage && (
           <>
             <PaginationEllipsis />
             <PaginationItem>
-              <PaginationLink
-                href="#"
-                onClick={() => handlePageChange(totalPages)}
-              >
+              <PaginationLink href="#" onClick={() => onPageChange(totalPages)}>
                 {totalPages}
               </PaginationLink>
             </PaginationItem>
@@ -80,9 +61,7 @@ export function DataTablePagination({
         <PaginationItem>
           <PaginationNext
             href="#"
-            onClick={() =>
-              handlePageChange(Math.min(totalPages, pageNumber + 1))
-            }
+            onClick={() => onPageChange(Math.min(totalPages, pageNumber + 1))}
             aria-disabled={pageNumber === totalPages}
           />
         </PaginationItem>

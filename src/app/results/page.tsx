@@ -9,6 +9,7 @@ import Loading from "@/components/v0/loading";
 import AxiosErrorAlert from "@/components/v0/axios-error-alert";
 import { DataTable } from "@/app/results/_components/data-table";
 import { DataTablePagination } from "@/app/results/_components/data-table-pagination";
+import { calculateTotalPages } from "@/app/results/_utils/utils";
 
 const Results = () => {
   const [q] = useQueryState("q");
@@ -57,20 +58,22 @@ const Results = () => {
     return <AxiosErrorAlert axiosError={error} />;
   }
 
+  const totalPages = calculateTotalPages(response.data);
   return (
     <div className="container mx-auto flex flex-col space-y-4">
       <DataTable
-        data={response.data}
+        data={response.data.content ?? []}
+        onSort={handleSort}
         sortProperty={sortProperty}
         sortDirection={sortDirection}
-        onSort={handleSort}
       />
-      <DataTablePagination
-        pageNumber={pageNumber}
-        pageSize={response.data.pageable?.pageSize}
-        total={response.data.totalElements}
-        handlePageChange={setPageNumber}
-      />
+      {totalPages && (
+        <DataTablePagination
+          onPageChange={setPageNumber}
+          pageNumber={pageNumber}
+          totalPages={totalPages}
+        />
+      )}
     </div>
   );
 };

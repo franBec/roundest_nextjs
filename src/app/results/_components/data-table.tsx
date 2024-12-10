@@ -4,7 +4,7 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 import {
-  Pokemons,
+  Pokemon,
   PokemonSortProperty,
   SortDirection,
 } from "@/__generated__/api/roundest/model";
@@ -20,22 +20,20 @@ import {
 import { ChevronDown, ChevronUp } from "lucide-react";
 
 interface DataTableProps {
-  data: Pokemons;
+  data: Pokemon[];
   sortProperty: PokemonSortProperty;
   sortDirection: SortDirection;
   onSort: (property: PokemonSortProperty) => void;
 }
 
 export function DataTable({
-  data,
-  sortProperty,
-  sortDirection,
   onSort,
+  sortDirection,
+  sortProperty,
+  data,
 }: DataTableProps) {
-  const tableData = data.content ?? [];
-
   const table = useReactTable({
-    data: tableData,
+    data,
     columns,
     getCoreRowModel: getCoreRowModel(),
   });

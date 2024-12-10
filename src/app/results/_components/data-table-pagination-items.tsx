@@ -1,15 +1,15 @@
 import { PaginationItem, PaginationLink } from "@/components/ui/pagination";
 
 interface TablePaginationItemsProps {
+  onPageChange: (page: number) => void;
   pageNumber: number;
   totalPages: number;
-  handlePageChange: (page: number) => void;
 }
 
 export function DataTablePaginationItems({
   pageNumber,
   totalPages,
-  handlePageChange,
+  onPageChange,
 }: Readonly<TablePaginationItemsProps>) {
   const maxVisiblePages = 5;
 
@@ -27,7 +27,7 @@ export function DataTablePaginationItems({
         <PaginationLink
           href="#"
           isActive={i === pageNumber}
-          onClick={() => handlePageChange(i)}
+          onClick={() => onPageChange(i)}
         >
           {i}
         </PaginationLink>

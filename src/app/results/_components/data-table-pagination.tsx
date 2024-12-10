@@ -17,11 +17,11 @@ interface TablePaginationProps {
 }
 
 export function DataTablePagination({
-  handlePageChange,
-  pageNumber,
-  pageSize,
-  total,
-}: Readonly<TablePaginationProps>) {
+                                      handlePageChange,
+                                      pageNumber,
+                                      pageSize,
+                                      total,
+                                    }: Readonly<TablePaginationProps>) {
   if (
     !pageNumber ||
     pageNumber < 1 ||
@@ -36,6 +36,9 @@ export function DataTablePagination({
 
   const totalPages = Math.ceil(total / pageSize);
 
+  const shouldShowFirstPage = pageNumber > 3;
+  const shouldShowLastPage = pageNumber < totalPages - 2;
+
   return (
     <Pagination>
       <PaginationContent>
@@ -46,14 +49,14 @@ export function DataTablePagination({
             aria-disabled={pageNumber === 1}
           />
         </PaginationItem>
-        {pageNumber > 2 && (
+        {shouldShowFirstPage && (
           <>
             <PaginationItem>
               <PaginationLink href="#" onClick={() => handlePageChange(1)}>
                 1
               </PaginationLink>
             </PaginationItem>
-            {pageNumber > 3 && <PaginationEllipsis />}
+            <PaginationEllipsis />
           </>
         )}
         <DataTablePaginationItems
@@ -61,9 +64,9 @@ export function DataTablePagination({
           totalPages={totalPages}
           handlePageChange={handlePageChange}
         />
-        {pageNumber < totalPages - 1 && (
+        {shouldShowLastPage && (
           <>
-            {pageNumber < totalPages - 2 && <PaginationEllipsis />}
+            <PaginationEllipsis />
             <PaginationItem>
               <PaginationLink
                 href="#"

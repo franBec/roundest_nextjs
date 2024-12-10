@@ -51,15 +51,9 @@ export function DataTable({
                 const canSort = header.column.getCanSort();
 
                 return (
-                  <TableHead
-                    key={header.id}
-                    className="cursor-pointer"
-                  >
+                  <TableHead key={header.id} className="cursor-pointer">
                     {canSort ? (
-                      <Button
-                        onClick={() => onSort(columnId)}
-                        variant="ghost"
-                      >
+                      <Button onClick={() => onSort(columnId)} variant="ghost">
                         <span>
                           {flexRender(
                             header.column.columnDef.header,

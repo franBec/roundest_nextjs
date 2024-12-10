@@ -80,10 +80,9 @@ export const BackendSelect: FC<BackendSelectProps> = ({
         </div>
       </div>
       <p className="w-full max-w-md text-sm text-muted-foreground text-centes">
-        Votes are stored in the same database, no matter the backend that processes the vote or the backend used for
-        querying the results.
+        Votes are stored in the same database, no matter the backend that
+        processes the vote or the backend used for querying the results.
       </p>
     </div>
   );
-
 };

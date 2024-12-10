@@ -38,10 +38,6 @@ export function DataTable({
     data: tableData,
     columns,
     getCoreRowModel: getCoreRowModel(),
-    defaultColumn: {
-      minSize: 50,
-      maxSize: 300,
-    },
   });
 
   return (
@@ -53,12 +49,19 @@ export function DataTable({
               {headerGroup.headers.map(header => {
                 const columnId = header.column.id as PokemonSortProperty;
                 const isSorted = sortProperty === columnId;
+                const canSort = header.column.getCanSort();
 
                 return (
                   <TableHead
                     key={header.id}
-                    onClick={() => onSort(columnId)}
-                    className="cursor-pointer"
+                    onClick={() => {
+                      if (canSort) {
+                        onSort(columnId);
+                      }
+                    }}
+                    className={`cursor-pointer ${
+                      canSort ? "hover:underline" : "cursor-default"
+                    }`}
                   >
                     <div className="flex items-center space-x-2">
                       {header.isPlaceholder
@@ -67,7 +70,7 @@ export function DataTable({
                             header.column.columnDef.header,
                             header.getContext()
                           )}
-                      {isSorted && (
+                      {isSorted && canSort && (
                         <span>{sortDirection === "ASC" ? "↑" : "↓"}</span>
                       )}
                     </div>

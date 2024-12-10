@@ -13,6 +13,7 @@ export const columns = [
       return <PokemonImage src={spriteUrl} alt={name} size={52} />;
     },
     size: 150,
+    enableSorting: false,
   }),
   columnHelper.accessor("id", {
     header: () => "#",

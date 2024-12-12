@@ -3,11 +3,7 @@ import {
   getCoreRowModel,
   useReactTable,
 } from "@tanstack/react-table";
-import {
-  Pokemon,
-  PokemonSortProperty,
-  SortDirection,
-} from "@/__generated__/api/roundest/model";
+import { Pokemon } from "@/__generated__/api/roundest/model";
 import { columns } from "@/app/results/_components/data-table-columns";
 import {
   Table,
@@ -22,9 +18,9 @@ import { Button } from "@/components/ui/button";
 
 interface DataTableProps {
   data: Pokemon[];
-  sortProperty: PokemonSortProperty;
-  sortDirection: SortDirection;
-  onSort: (property: PokemonSortProperty) => void;
+  sortProperty?: string;
+  sortDirection?: string;
+  onSort: (property: string, direction: string) => void;
 }
 
 export function DataTable({
@@ -46,14 +42,22 @@ export function DataTable({
           {table.getHeaderGroups().map(headerGroup => (
             <TableRow key={headerGroup.id}>
               {headerGroup.headers.map(header => {
-                const columnId = header.column.id as PokemonSortProperty;
+                const columnId = header.column.id;
                 const isSorted = sortProperty === columnId;
                 const canSort = header.column.getCanSort();
 
                 return (
                   <TableHead key={header.id} className="cursor-pointer">
                     {canSort ? (
-                      <Button onClick={() => onSort(columnId)} variant="ghost">
+                      <Button
+                        onClick={() =>
+                          onSort(
+                            columnId,
+                            sortDirection === "asc" ? "desc" : "asc"
+                          )
+                        }
+                        variant="ghost"
+                      >
                         <span>
                           {flexRender(
                             header.column.columnDef.header,
@@ -62,7 +66,7 @@ export function DataTable({
                         </span>
                         <span className="ml-2 inline-block w-4">
                           {isSorted &&
-                            (sortDirection === "ASC" ? (
+                            (sortDirection === "asc" ? (
                               <ChevronUp size={16} />
                             ) : (
                               <ChevronDown size={16} />

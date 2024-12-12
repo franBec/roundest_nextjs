@@ -1,9 +1,10 @@
 "use client";
-import { parseAsInteger, parseAsStringLiteral, useQueryState } from "nuqs";
 import {
-  PokemonSortProperty,
-  SortDirection,
-} from "@/__generated__/api/roundest/model";
+  parseAsArrayOf,
+  parseAsInteger,
+  parseAsString,
+  useQueryState,
+} from "nuqs";
 import { useFindAll } from "@/__generated__/api/roundest/roundestApi";
 import Loading from "@/components/v0/loading";
 import AxiosErrorAlert from "@/components/v0/axios-error-alert";
@@ -15,33 +16,21 @@ import {
   BackendSelect,
 } from "@/components/backend-select/backend-select";
 import { useState } from "react";
+import { stringify } from "qs";
 
 const Page = () => {
-  const [q] = useQueryState("q");
+  const [name] = useQueryState("name");
   const [pageNumber, setPageNumber] = useQueryState(
     "pageNumber",
     parseAsInteger.withDefault(1)
   );
-  const [sortProperty, setSortProperty] = useQueryState(
-    "sortProperty",
-    parseAsStringLiteral(Object.values(PokemonSortProperty)).withDefault(
-      "votes"
-    )
+  const [pageSort, setPageSort] = useQueryState(
+    "pageSort",
+    parseAsArrayOf(parseAsString).withDefault(["votes:desc"])
   );
-  const [sortDirection, setSortDirection] = useQueryState(
-    "sortDirection",
-    parseAsStringLiteral(Object.values(SortDirection)).withDefault("DESC")
-  );
+
   const [firstBackend] = Array.from(Backends.entries());
   const [backendUrl, setBackendUrl] = useState<string>(firstBackend[1]);
-
-  const findAllParams = {
-    pageNumber: pageNumber - 1,
-    pageSize: 5,
-    sortProperty,
-    sortDirection,
-    q: q ?? undefined,
-  };
 
   const {
     data: response,
@@ -50,13 +39,25 @@ const Page = () => {
     isPending,
     isRefetching,
     refetch,
-  } = useFindAll(findAllParams, {
-    axios: { baseURL: backendUrl },
-  });
+  } = useFindAll(
+    {
+      name: name ?? undefined,
+      pageNumber: pageNumber - 1,
+      pageSize: 5,
+      pageSort,
+    },
+    {
+      axios: {
+        baseURL: backendUrl,
+        paramsSerializer: params => {
+          return stringify(params, { indices: false });
+        },
+      },
+    }
+  );
 
-  const handleSort = (property: PokemonSortProperty) => {
-    setSortProperty(property);
-    setSortDirection(sortDirection === "ASC" ? "DESC" : "ASC");
+  const handleSort = (property: string, direction: string) => {
+    setPageSort([property + ":" + direction]);
   };
 
   if (isPending) {
@@ -82,8 +83,8 @@ const Page = () => {
         <DataTable
           data={response.data.content ?? []}
           onSort={handleSort}
-          sortProperty={sortProperty}
-          sortDirection={sortDirection}
+          sortProperty={pageSort.at(0)?.split(":").at(0)}
+          sortDirection={pageSort.at(0)?.split(":").at(1)}
         />
         {totalPages && (
           <DataTablePagination

@@ -1,6 +1,7 @@
 import { Pokemon } from "@/__generated__/api/roundest/model";
 import { createColumnHelper } from "@tanstack/react-table";
 import PokemonImage from "@/components/pokemon/pokemon-image";
+import HoverLink from "@/components/v0/hover-link";
 
 const columnHelper = createColumnHelper<Pokemon>();
 export const columns = [
@@ -26,5 +27,13 @@ export const columns = [
   columnHelper.accessor("votes", {
     header: () => "Votes",
     size: 100,
+  }),
+  columnHelper.display({
+    id: "actions",
+    header: () => "Actions",
+    cell: cellContext => {
+      const id = cellContext.row.original.id;
+      return <HoverLink href={`/pokemons/${id}`} />;
+    },
   }),
 ];

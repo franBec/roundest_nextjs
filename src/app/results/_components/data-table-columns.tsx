@@ -13,20 +13,16 @@ export const columns = [
       const name = cellContext.row.original.name;
       return <PokemonImage src={spriteUrl} alt={name} size={52} />;
     },
-    size: 150,
     enableSorting: false,
   }),
   columnHelper.accessor("id", {
     header: () => "#",
-    size: 50,
   }),
   columnHelper.accessor("name", {
     header: () => "Name",
-    size: 100,
   }),
   columnHelper.accessor("votes", {
     header: () => "Votes",
-    size: 100,
   }),
   columnHelper.display({
     id: "actions",

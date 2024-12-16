@@ -3,12 +3,12 @@ import Link from "next/link";
 
 export default function Page() {
   return (
-    <div className="max-w-4xl mx-auto px-4 py-8 space-y-12">
-      <h1 className="text-4xl font-bold text-center mb-8">
+    <div className="max-w-4xl mx-auto space-y-8">
+      <h1 className="text-4xl font-bold text-center">
         Franco Exequiel Becvort
       </h1>
 
-      <div className="flex flex-col md:flex-row items-center gap-8">
+      <section className="flex flex-col md:flex-row items-center gap-8">
         <Image
           src="/images/profile-photo.jpg"
           alt="Profile Photo"
@@ -30,9 +30,9 @@ export default function Page() {
             <li>English C2 Proficient Certified by EF SET</li>
           </ul>
         </div>
-      </div>
+      </section>
 
-      <div className="space-y-4">
+      <section className="space-y-4">
         <h2 className="text-2xl font-semibold">Career Overview</h2>
         <p>
           My career has spanned various sectors, including government,
@@ -57,9 +57,9 @@ export default function Page() {
           There, I dive into the intricacies of web development (mainly in Java
           Spring Boot).
         </p>
-      </div>
+      </section>
 
-      <div className="space-y-4">
+      <section className="space-y-4">
         <h2 className="text-2xl font-semibold">A Note of Gratitude</h2>
         <p lang="uk">
           Дорога Єлизавета, Хоча я ще плутаю букви та звуки твоєї мови, я
@@ -69,7 +69,7 @@ export default function Page() {
           здійсняться швидше, ніж очікується. А до того часу ти можеш на мене
           розраховувати.
         </p>
-      </div>
+      </section>
     </div>
   );
 }

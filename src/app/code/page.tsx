@@ -16,9 +16,8 @@ export default function Page() {
         </p>
         <ul className="list-disc list-inside ml-4 my-4">
           <li>
-            <strong>One Frontend App</strong>: A single frontend app built with
-            Next.js, which serves as the interface for users to vote on the
-            roundest Pokémon.
+            <strong>One Frontend App</strong>: A single frontend app, which
+            serves as the interface for users to vote on the roundest Pokémon.
           </li>
           <li>
             <strong>Multiple Backend Systems</strong>: Several backend systems
@@ -34,7 +33,9 @@ export default function Page() {
       </section>
 
       <section className="mb-8">
-        <h2 className="font-semibold mb-2">Why Next.js for the Frontend?</h2>
+        <h2 className="text-2xl font-semibold mb-2">
+          Why Next.js for the Frontend?
+        </h2>
         <p className="leading-relaxed">
           As a developer with a strong backend focus,{" "}
           {

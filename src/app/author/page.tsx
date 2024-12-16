@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Page() {
   return (
@@ -46,14 +47,13 @@ export default function Page() {
         </p>
         <p>
           This passion for education also is the foundation of my{" "}
-          <a
+          <Link
             href="https://pollito.dev/"
-            className="text-primary hover:underline"
             target="_blank"
-            rel="noopener noreferrer"
+            className="text-blue-600 hover:underline"
           >
             programming blog.
-          </a>{" "}
+          </Link>{" "}
           There, I dive into the intricacies of web development (mainly in Java
           Spring Boot).
         </p>

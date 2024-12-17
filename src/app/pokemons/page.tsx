@@ -15,9 +15,10 @@ import { stringify } from "qs";
 import { useBackendLanguage } from "@/components/backend-language/backend-language-context";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { FormEvent, useState } from "react";
 
 const Page = () => {
-  const [name] = useQueryState("name");
+  const [name, setName] = useQueryState("name");
   const [pageNumber, setPageNumber] = useQueryState(
     "pageNumber",
     parseAsInteger.withDefault(1)
@@ -55,6 +56,13 @@ const Page = () => {
     setPageSort([property + ":" + direction]);
   };
 
+  const [inputValue, setInputValue] = useState(name ?? "");
+  const handleSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    setName(inputValue);
+    setPageNumber(1);
+  };
+
   if (isPending) {
     return <Loading />;
   }
@@ -65,8 +73,21 @@ const Page = () => {
 
   const totalPages = calculateTotalPages(response.data);
   return (
-    <div className="container mx-auto space-y-4">
+    <div className="max-w-4xl mx-auto space-y-4">
       <h1 className="text-4xl font-bold">Pokémons</h1>
+      <form
+        onSubmit={handleSubmit}
+        className="flex items-center space-x-2 mb-4"
+      >
+        <input
+          type="text"
+          placeholder="Filter by Pokémon name..."
+          value={inputValue}
+          onChange={(e) => setInputValue(e.target.value)}
+          className="border p-2 rounded w-full max-w-sm"
+        />
+        <Button type="submit">Filter</Button>
+      </form>
       <div className="space-y-4">
         <DataTable
           data={response.data.content ?? []}

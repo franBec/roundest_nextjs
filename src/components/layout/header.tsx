@@ -6,6 +6,7 @@ import { HeaderTitle } from "@/components/layout/header-title";
 import { BackendLanguageSelector } from "@/components/backend-language/backend-language-selector";
 import { HeaderNavLinks } from "@/components/layout/header-nav-links";
 import { HeaderMobileMenu } from "@/components/layout/header-mobile-menu";
+import { useBackendLanguage } from "@/components/backend-language/backend-language-context";
 
 const navLinks = [
   { href: "/vote", label: "Vote!" },
@@ -16,10 +17,18 @@ const navLinks = [
 
 export const Header = () => {
   const pathname = usePathname();
+  const { selectedBackendLanguage } = useBackendLanguage();
+  const gradientColors = selectedBackendLanguage.colors;
 
   return (
-    <header className="p-4 border-b">
-      <nav className="container mx-auto flex justify-between items-center">
+    <header className="p-4 relative">
+      <div
+        className="absolute inset-x-0 bottom-0 h-[4px]"
+        style={{
+          background: `linear-gradient(to right, #${gradientColors[0]}, #${gradientColors[1]})`,
+        }}
+      ></div>
+      <nav className="container mx-auto flex justify-between items-center relative">
         <div className="hidden md:block">
           <HeaderTitle />
         </div>

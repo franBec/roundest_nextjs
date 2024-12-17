@@ -6,6 +6,7 @@ import { backendLanguageOptions } from "@/components/backend-language/backend-la
 interface BackendLanguage {
   value: string;
   label: string;
+  colors: string[];
 }
 
 interface BackendLanguageContextType {

@@ -6,11 +6,24 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useBackendLanguage } from "@/components/backend-language/backend-language-context";
+import { toast } from "@/hooks/use-toast";
 
 export const backendLanguageOptions = [
-  { value: "http://localhost:8080", label: "Java" },
-  { value: "http://localhost:8081", label: "Kotlin" },
-  { value: "http://localhost:8082", label: "Groovy" },
+  {
+    value: "http://localhost:8080",
+    label: "Java",
+    colors: ["5899C4", "DC4042"],
+  },
+  {
+    value: "http://localhost:8081",
+    label: "Kotlin",
+    colors: ["4B7EDC", "F78902"],
+  },
+  {
+    value: "http://localhost:8082",
+    label: "Groovy",
+    colors: ["5B95B4", "AFAFAF"],
+  },
 ];
 
 export const BackendLanguageSelector = () => {
@@ -26,7 +39,12 @@ export const BackendLanguageSelector = () => {
           const selectedOption = backendLanguageOptions.find(
             option => option.value === value
           );
-          if (selectedOption) setSelectedBackendLanguage(selectedOption);
+          if (selectedOption) {
+            setSelectedBackendLanguage(selectedOption);
+            toast({
+              description: `Requests will be processed by the ${selectedOption.label} backend`,
+            });
+          }
         }}
       >
         <SelectTrigger className="w-[100px]">

@@ -83,7 +83,7 @@ const Page = () => {
           type="text"
           placeholder="Filter by Pokémon name..."
           value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
+          onChange={e => setInputValue(e.target.value)}
           className="border p-2 rounded w-full max-w-sm"
         />
         <Button type="submit">Filter</Button>

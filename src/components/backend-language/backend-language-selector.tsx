@@ -26,7 +26,7 @@ export const backendLanguageOptions = [
   },
 ];
 
-export const BackendLanguageSelector = () => {
+const BackendLanguageSelector = () => {
   const { selectedBackendLanguage, setSelectedBackendLanguage } =
     useBackendLanguage();
 
@@ -62,3 +62,4 @@ export const BackendLanguageSelector = () => {
     </div>
   );
 };
+export default BackendLanguageSelector;

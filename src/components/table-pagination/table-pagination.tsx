@@ -7,7 +7,7 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
-import { TablePaginationItems } from "./table-pagination-items";
+import TablePaginationItems from "@/components/table-pagination/table-pagination-items";
 
 interface TablePaginationProps {
   onPageChange: (newPageNumber: number) => void;
@@ -15,11 +15,11 @@ interface TablePaginationProps {
   totalPages: number;
 }
 
-export function TablePagination({
+const TablePagination = ({
   onPageChange,
   pageNumber,
   totalPages,
-}: Readonly<TablePaginationProps>) {
+}: Readonly<TablePaginationProps>) => {
   const shouldShowFirstPage = pageNumber > 3;
   const shouldShowLastPage = pageNumber < totalPages - 2;
 
@@ -68,4 +68,5 @@ export function TablePagination({
       </PaginationContent>
     </Pagination>
   );
-}
+};
+export default TablePagination;

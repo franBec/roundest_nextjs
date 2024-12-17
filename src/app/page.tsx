@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
-export default function Page() {
+const Page = () => {
   return (
     <div className="min-h-screen p-8">
       <header className="text-center mb-12">
@@ -91,4 +91,5 @@ export default function Page() {
       </main>
     </div>
   );
-}
+};
+export default Page;

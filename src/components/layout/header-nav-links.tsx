@@ -8,7 +8,7 @@ interface NavLinksProps {
   mobile?: boolean;
 }
 
-export const HeaderNavLinks: FC<NavLinksProps> = ({
+const HeaderNavLinks: FC<NavLinksProps> = ({
   navLinks,
   pathname,
   mobile = false,
@@ -28,3 +28,4 @@ export const HeaderNavLinks: FC<NavLinksProps> = ({
     ))}
   </>
 );
+export default HeaderNavLinks;

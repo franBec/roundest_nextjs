@@ -1,14 +1,14 @@
 "use client";
 
-import React, { ReactNode } from "react";
-import { Header } from "./header";
-import { Footer } from "@/components/layout/footer";
+import { ReactNode } from "react";
+import Footer from "@/components/layout/footer";
+import Header from "@/components/layout/header";
 
 interface LayoutProps {
   children: ReactNode;
 }
 
-export default function Layout({ children }: Readonly<LayoutProps>) {
+const Layout = ({ children }: Readonly<LayoutProps>) => {
   return (
     <div className="flex flex-col min-h-screen bg-background text-foreground">
       <Header />
@@ -18,4 +18,5 @@ export default function Layout({ children }: Readonly<LayoutProps>) {
       <Footer />
     </div>
   );
-}
+};
+export default Layout;

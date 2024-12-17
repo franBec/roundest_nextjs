@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-export default function Page() {
+const Page = () => {
   return (
     <main className="max-w-4xl mx-auto space-y-8">
       <h1 className="text-4xl font-bold">
@@ -173,4 +173,5 @@ export default function Page() {
       </section>
     </main>
   );
-}
+};
+export default Page;

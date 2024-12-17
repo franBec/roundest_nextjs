@@ -4,9 +4,9 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import { AxiosError } from "axios";
 
-export default function AxiosErrorAlert({
+const AxiosErrorAlert = ({
   axiosError,
-}: Readonly<{ axiosError: AxiosError<unknown, unknown> }>) {
+}: Readonly<{ axiosError: AxiosError<unknown, unknown> }>) => {
   const [showDetails, setShowDetails] = useState(false);
 
   const errorMessage = axiosError?.response?.data
@@ -41,4 +41,5 @@ export default function AxiosErrorAlert({
       </AlertDescription>
     </Alert>
   );
-}
+};
+export default AxiosErrorAlert;

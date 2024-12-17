@@ -6,11 +6,11 @@ interface TablePaginationItemsProps {
   totalPages: number;
 }
 
-export function TablePaginationItems({
+const TablePaginationItems = ({
   pageNumber,
   totalPages,
   onPageChange,
-}: Readonly<TablePaginationItemsProps>) {
+}: Readonly<TablePaginationItemsProps>) => {
   const maxVisiblePages = 5;
 
   let startPage = Math.max(1, pageNumber - Math.floor(maxVisiblePages / 2));
@@ -36,4 +36,5 @@ export function TablePaginationItems({
   }
 
   return <>{items}</>;
-}
+};
+export default TablePaginationItems;

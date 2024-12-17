@@ -15,7 +15,7 @@ interface PokemonFilterFormProps {
   onSubmit: (name: string) => void;
 }
 
-export const PokemonsFilterForm = ({
+const PokemonsFilterForm = ({
   defaultName,
   onSubmit,
 }: PokemonFilterFormProps) => {
@@ -52,3 +52,5 @@ export const PokemonsFilterForm = ({
     </Form>
   );
 };
+
+export default PokemonsFilterForm;

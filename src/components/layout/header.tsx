@@ -1,11 +1,11 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { ModeToggle } from "@/components/dark-mode/mode-toogle";
-import { HeaderTitle } from "@/components/layout/header-title";
-import { BackendLanguageSelector } from "@/components/backend-language/backend-language-selector";
-import { HeaderNavLinks } from "@/components/layout/header-nav-links";
-import { HeaderMobileMenu } from "@/components/layout/header-mobile-menu";
+import ModeToggle from "@/components/dark-mode/mode-toogle";
+import HeaderTitle from "@/components/layout/header-title";
+import BackendLanguageSelector from "@/components/backend-language/backend-language-selector";
+import HeaderNavLinks from "@/components/layout/header-nav-links";
+import HeaderMobileMenu from "@/components/layout/header-mobile-menu";
 import { useBackendLanguage } from "@/components/backend-language/backend-language-context";
 
 const navLinks = [
@@ -15,7 +15,7 @@ const navLinks = [
   { href: "/author", label: "Author" },
 ];
 
-export const Header = () => {
+const Header = () => {
   const pathname = usePathname();
   const { selectedBackendLanguage } = useBackendLanguage();
   const gradientColors = selectedBackendLanguage.colors;
@@ -44,3 +44,4 @@ export const Header = () => {
     </header>
   );
 };
+export default Header;

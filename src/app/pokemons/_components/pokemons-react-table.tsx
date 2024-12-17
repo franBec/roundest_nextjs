@@ -4,7 +4,7 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 import { Pokemon } from "@/__generated__/api/roundest/model";
-import { columns } from "@/app/pokemons/_components/pokemons-react-table-columns-helper";
+import columns from "@/app/pokemons/_components/pokemons-react-table-columns-helper";
 import {
   Table,
   TableBody,
@@ -23,12 +23,12 @@ interface DataTableProps {
   onSort: (property: string, direction: string) => void;
 }
 
-export function PokemonsReactTable({
+const PokemonsReactTable = ({
   onSort,
   sortDirection,
   sortProperty,
   data,
-}: DataTableProps) {
+}: DataTableProps) => {
   const table = useReactTable({
     data,
     columns,
@@ -112,4 +112,5 @@ export function PokemonsReactTable({
       </Table>
     </div>
   );
-}
+};
+export default PokemonsReactTable;

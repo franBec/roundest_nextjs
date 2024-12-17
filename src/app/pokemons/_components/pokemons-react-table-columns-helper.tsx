@@ -4,7 +4,7 @@ import PokemonImage from "@/components/pokemon/pokemon-image";
 import Link from "next/link";
 
 const columnHelper = createColumnHelper<Pokemon>();
-export const columns = [
+const columns = [
   columnHelper.display({
     id: "spriteUrl",
     header: () => "Pokémon",
@@ -40,3 +40,5 @@ export const columns = [
     },
   }),
 ];
+
+export default columns;

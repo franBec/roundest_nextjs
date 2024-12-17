@@ -27,13 +27,13 @@ export const metadata: Metadata = {
     "A fun way to show how different computer systems can work together!.",
 };
 
-export default function RootLayout({
+const RootLayout = ({
   children,
   modal,
 }: Readonly<{
   children: ReactNode;
   modal: ReactNode;
-}>) {
+}>) => {
   return (
     <ClientProvider>
       <html lang="en">
@@ -62,4 +62,5 @@ export default function RootLayout({
       </html>
     </ClientProvider>
   );
-}
+};
+export default RootLayout;

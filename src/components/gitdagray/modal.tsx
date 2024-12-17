@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { Dialog, DialogContent, DialogOverlay } from "@/components/ui/dialog";
 import { ReactNode } from "react";
 
-export default function Modal({ children }: Readonly<{ children: ReactNode }>) {
+const Modal = ({ children }: Readonly<{ children: ReactNode }>) => {
   const router = useRouter();
   const handleOpenChange = () => {
     router.back();
@@ -18,4 +18,5 @@ export default function Modal({ children }: Readonly<{ children: ReactNode }>) {
       </DialogOverlay>
     </Dialog>
   );
-}
+};
+export default Modal;

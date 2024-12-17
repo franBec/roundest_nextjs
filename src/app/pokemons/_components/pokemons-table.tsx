@@ -1,5 +1,5 @@
-import { PokemonsReactTable } from "@/app/pokemons/_components/pokemons-react-table";
-import { TablePagination } from "@/components/table-pagination/table-pagination";
+import PokemonsReactTable from "@/app/pokemons/_components/pokemons-react-table";
+import TablePagination from "@/components/table-pagination/table-pagination";
 import { Pokemon } from "@/__generated__/api/roundest/model";
 
 interface PokemonDataTableProps {
@@ -12,7 +12,7 @@ interface PokemonDataTableProps {
   totalPages?: number;
 }
 
-export const PokemonsTable = ({
+const PokemonsTable = ({
   data,
   onPageChange,
   onSort,
@@ -39,3 +39,4 @@ export const PokemonsTable = ({
     </div>
   );
 };
+export default PokemonsTable;

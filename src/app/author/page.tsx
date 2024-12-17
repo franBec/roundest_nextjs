@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-export default function Page() {
+const Page = () => {
   return (
     <div className="max-w-4xl mx-auto space-y-8">
       <h1 className="text-4xl font-bold text-center">
@@ -72,4 +72,5 @@ export default function Page() {
       </section>
     </div>
   );
-}
+};
+export default Page;

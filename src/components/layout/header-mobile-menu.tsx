@@ -1,8 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Menu } from "lucide-react";
-import { HeaderTitle } from "@/components/layout/header-title";
-import { HeaderNavLinks } from "@/components/layout/header-nav-links";
+import HeaderTitle from "@/components/layout/header-title";
+import HeaderNavLinks from "@/components/layout/header-nav-links";
 import { FC } from "react";
 
 interface MobileMenuProps {
@@ -10,10 +10,7 @@ interface MobileMenuProps {
   pathname: string;
 }
 
-export const HeaderMobileMenu: FC<MobileMenuProps> = ({
-  navLinks,
-  pathname,
-}) => (
+const HeaderMobileMenu: FC<MobileMenuProps> = ({ navLinks, pathname }) => (
   <div className="md:hidden">
     <Sheet>
       <SheetTrigger asChild>
@@ -31,3 +28,4 @@ export const HeaderMobileMenu: FC<MobileMenuProps> = ({
     </Sheet>
   </div>
 );
+export default HeaderMobileMenu;

@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { FC } from "react";
 import { Pokemon } from "@/__generated__/api/roundest/model";
 import { useIncrementPokemonVotes } from "@/__generated__/api/roundest/roundestApi";
-import { toast } from "@/hooks/use-toast";
+import { toast } from "sonner";
 
 interface PokemonCandidatesProps {
   voteUrl: string;
@@ -28,15 +28,10 @@ const PokemonCandidates: FC<PokemonCandidatesProps> = ({
       { id },
       {
         onSuccess: () => {
-          toast({
-            description: "Vote sent!",
-          });
+          toast("Vote sent!");
         },
         onError: () => {
-          toast({
-            variant: "destructive",
-            description: "Uh oh! Something went wrong.",
-          });
+          toast("Uh oh! Something went wrong.");
         },
         onSettled: () => {
           refetch();

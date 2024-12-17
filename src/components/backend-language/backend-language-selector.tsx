@@ -41,7 +41,9 @@ export const BackendLanguageSelector = () => {
           );
           if (selectedOption) {
             setSelectedBackendLanguage(selectedOption);
-            toast(`Requests will be processed by the ${selectedOption.label} backend`);
+            toast(
+              `Requests will be processed by the ${selectedOption.label} backend`
+            );
           }
         }}
       >

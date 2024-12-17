@@ -8,23 +8,12 @@ import {
 import { useFindAll } from "@/__generated__/api/roundest/roundestApi";
 import Loading from "@/components/v0/loading";
 import AxiosErrorAlert from "@/components/v0/axios-error-alert";
-import { DataTable } from "@/app/pokemons/_components/data-table";
-import { DataTablePagination } from "@/components/pagination/data-table-pagination";
 import { calculateTotalPages } from "@/app/pokemons/_utils/utils";
 import { stringify } from "qs";
 import { useBackendLanguage } from "@/components/backend-language/backend-language-context";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
-import { Input } from "@/components/ui/input";
-import { useForm } from "react-hook-form";
-import { FindAllParams } from "@/__generated__/api/roundest/model";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormMessage,
-} from "@/components/ui/form";
+import { PokemonsFilterForm } from "@/app/pokemons/_components/pokemons-filter-form";
+import { PokemonsTable } from "@/app/pokemons/_components/pokemons-table";
+import { PokemonsFooter } from "@/app/pokemons/_components/pokemons-footer";
 
 const Page = () => {
   const [name, setName] = useQueryState("name", parseAsString.withDefault(""));
@@ -65,18 +54,10 @@ const Page = () => {
     setPageSort([property + ":" + direction]);
   };
 
-  const form = useForm<FindAllParams>({
-    defaultValues: {
-      name,
-    },
-  });
-  function onSubmit({ name }: FindAllParams) {
-    if (!name) {
-      name = "";
-    }
-    setName(name);
+  const handleFilterSubmit = (newName: string) => {
+    setName(newName);
     setPageNumber(1);
-  }
+  };
 
   if (isPending) {
     return <Loading />;
@@ -87,52 +68,21 @@ const Page = () => {
   }
 
   const totalPages = calculateTotalPages(response.data);
+
   return (
     <div className="max-w-4xl mx-auto space-y-4">
       <h1 className="text-4xl font-bold">Pokémons</h1>
-      <Form {...form}>
-        <form
-          onSubmit={form.handleSubmit(onSubmit)}
-          className="flex w-full max-w-sm items-center space-x-2"
-        >
-          <FormField
-            control={form.control}
-            name="name"
-            render={({ field }) => (
-              <FormItem>
-                <FormControl>
-                  <Input placeholder="Filter by Pokémon name..." {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <Button type="submit">Filter</Button>
-        </form>
-      </Form>
-      <div className="space-y-4">
-        <DataTable
-          data={response.data.content ?? []}
-          onSort={handleSort}
-          sortProperty={pageSort.at(0)?.split(":").at(0)}
-          sortDirection={pageSort.at(0)?.split(":").at(1)}
-        />
-        {totalPages && (
-          <DataTablePagination
-            onPageChange={setPageNumber}
-            pageNumber={pageNumber}
-            totalPages={totalPages}
-          />
-        )}
-      </div>
-      <div className="w-full flex justify-center items-center space-x-2">
-        <span className="font-bold text-xl">Not happy with the results?</span>
-        <Button asChild variant="secondary">
-          <Link href="/vote">
-            <span>Vote!</span>
-          </Link>
-        </Button>
-      </div>
+      <PokemonsFilterForm defaultName={name} onSubmit={handleFilterSubmit} />
+      <PokemonsTable
+        data={response.data.content ?? []}
+        onPageChange={setPageNumber}
+        onSort={handleSort}
+        pageNumber={pageNumber}
+        sortDirection={pageSort.at(0)?.split(":").at(1)}
+        sortProperty={pageSort.at(0)?.split(":").at(0)}
+        totalPages={totalPages}
+      />
+      <PokemonsFooter />
     </div>
   );
 };

@@ -7,7 +7,7 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
-import { DataTablePaginationItems } from "./data-table-pagination-items";
+import { TablePaginationItems } from "./table-pagination-items";
 
 interface TablePaginationProps {
   onPageChange: (newPageNumber: number) => void;
@@ -15,7 +15,7 @@ interface TablePaginationProps {
   totalPages: number;
 }
 
-export function DataTablePagination({
+export function TablePagination({
   onPageChange,
   pageNumber,
   totalPages,
@@ -43,7 +43,7 @@ export function DataTablePagination({
             <PaginationEllipsis />
           </>
         )}
-        <DataTablePaginationItems
+        <TablePaginationItems
           pageNumber={pageNumber}
           totalPages={totalPages}
           onPageChange={onPageChange}

@@ -6,7 +6,7 @@ interface TablePaginationItemsProps {
   totalPages: number;
 }
 
-export function DataTablePaginationItems({
+export function TablePaginationItems({
   pageNumber,
   totalPages,
   onPageChange,

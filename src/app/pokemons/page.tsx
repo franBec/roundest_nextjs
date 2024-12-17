@@ -18,7 +18,7 @@ import Link from "next/link";
 import { FormEvent, useState } from "react";
 
 const Page = () => {
-  const [name, setName] = useQueryState("name");
+  const [name, setName] = useQueryState("name", parseAsString.withDefault(""));
   const [pageNumber, setPageNumber] = useQueryState(
     "pageNumber",
     parseAsInteger.withDefault(1)
@@ -37,7 +37,7 @@ const Page = () => {
     isPending,
   } = useFindAll(
     {
-      name: name ?? undefined,
+      name,
       pageNumber: pageNumber - 1,
       pageSize: 5,
       pageSort,
@@ -56,7 +56,7 @@ const Page = () => {
     setPageSort([property + ":" + direction]);
   };
 
-  const [inputValue, setInputValue] = useState(name ?? "");
+  const [inputValue, setInputValue] = useState(name);
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     setName(inputValue);

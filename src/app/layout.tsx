@@ -6,7 +6,7 @@ import { ThemeProvider } from "@/components/dark-mode/theme-provider";
 import ClientProvider from "@/components/react-query/client-provider";
 import { ReactNode, Suspense } from "react";
 import Loading from "@/components/v0/loading";
-import { Toaster } from "@/components/ui/toaster";
+import { Toaster } from "@/components/ui/sonner";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
 import { BackendLanguageProvider } from "@/components/backend-language/backend-language-context";
 

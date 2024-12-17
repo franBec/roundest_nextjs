@@ -6,7 +6,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useBackendLanguage } from "@/components/backend-language/backend-language-context";
-import { toast } from "@/hooks/use-toast";
+import { toast } from "sonner";
 
 export const backendLanguageOptions = [
   {
@@ -41,9 +41,7 @@ export const BackendLanguageSelector = () => {
           );
           if (selectedOption) {
             setSelectedBackendLanguage(selectedOption);
-            toast({
-              description: `Requests will be processed by the ${selectedOption.label} backend`,
-            });
+            toast(`Requests will be processed by the ${selectedOption.label} backend`);
           }
         }}
       >

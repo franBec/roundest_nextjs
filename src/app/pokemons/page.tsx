@@ -15,7 +15,16 @@ import { stringify } from "qs";
 import { useBackendLanguage } from "@/components/backend-language/backend-language-context";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { FormEvent, useState } from "react";
+import { Input } from "@/components/ui/input";
+import { useForm } from "react-hook-form";
+import { FindAllParams } from "@/__generated__/api/roundest/model";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormMessage,
+} from "@/components/ui/form";
 
 const Page = () => {
   const [name, setName] = useQueryState("name", parseAsString.withDefault(""));
@@ -56,12 +65,18 @@ const Page = () => {
     setPageSort([property + ":" + direction]);
   };
 
-  const [inputValue, setInputValue] = useState(name);
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault();
-    setName(inputValue);
+  const form = useForm<FindAllParams>({
+    defaultValues: {
+      name,
+    },
+  });
+  function onSubmit({ name }: FindAllParams) {
+    if (!name) {
+      name = "";
+    }
+    setName(name);
     setPageNumber(1);
-  };
+  }
 
   if (isPending) {
     return <Loading />;
@@ -75,19 +90,26 @@ const Page = () => {
   return (
     <div className="max-w-4xl mx-auto space-y-4">
       <h1 className="text-4xl font-bold">Pokémons</h1>
-      <form
-        onSubmit={handleSubmit}
-        className="flex items-center space-x-2 mb-4"
-      >
-        <input
-          type="text"
-          placeholder="Filter by Pokémon name..."
-          value={inputValue}
-          onChange={e => setInputValue(e.target.value)}
-          className="border p-2 rounded w-full max-w-sm"
-        />
-        <Button type="submit">Filter</Button>
-      </form>
+      <Form {...form}>
+        <form
+          onSubmit={form.handleSubmit(onSubmit)}
+          className="flex w-full max-w-sm items-center space-x-2"
+        >
+          <FormField
+            control={form.control}
+            name="name"
+            render={({ field }) => (
+              <FormItem>
+                <FormControl>
+                  <Input placeholder="Filter by Pokémon name..." {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <Button type="submit">Filter</Button>
+        </form>
+      </Form>
       <div className="space-y-4">
         <DataTable
           data={response.data.content ?? []}

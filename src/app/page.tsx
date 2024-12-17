@@ -67,7 +67,7 @@ export default function Page() {
               <Link href="/vote">Vote Now</Link>
             </Button>
             <Button asChild variant="secondary">
-              <Link href="/results">See Results</Link>
+              <Link href="/pokemons">See Results</Link>
             </Button>
           </div>
         </section>

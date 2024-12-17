@@ -38,7 +38,7 @@ const Page = () => {
           isPending={isPending}
         />
         <div className="w-full flex justify-end">
-          <RedirectButton href="/results" label="See Results table" />
+          <RedirectButton href="/pokemons" label="See Pokemons" />
         </div>
       </div>
     </div>

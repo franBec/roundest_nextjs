@@ -8,9 +8,9 @@ import {
 import { useFindAll } from "@/__generated__/api/roundest/roundestApi";
 import Loading from "@/components/v0/loading";
 import AxiosErrorAlert from "@/components/v0/axios-error-alert";
-import { DataTable } from "@/app/results/_components/data-table";
+import { DataTable } from "@/app/pokemons/_components/data-table";
 import { DataTablePagination } from "@/components/pagination/data-table-pagination";
-import { calculateTotalPages } from "@/app/results/_utils/utils";
+import { calculateTotalPages } from "@/app/pokemons/_utils/utils";
 import { stringify } from "qs";
 import { useBackendLanguage } from "@/components/backend-language/backend-language-context";
 

@@ -16,7 +16,7 @@ export default function RedirectButton({
   icon: Icon = ArrowLeft,
 }: Readonly<RedirectButtonProps>) {
   return (
-    <Button asChild variant="outline" className="flex items-center space-x-2">
+    <Button asChild variant="default" className="flex items-center">
       <Link href={href}>
         <Icon className="h-4 w-4" />
         <span>{label}</span>

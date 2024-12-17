@@ -8,8 +8,8 @@ import { HeaderNavLinks } from "@/components/layout/header-nav-links";
 import { HeaderMobileMenu } from "@/components/layout/header-mobile-menu";
 
 const navLinks = [
-  { href: "/vote", label: "Vote" },
-  { href: "/results", label: "Results" },
+  { href: "/vote", label: "Vote!" },
+  { href: "/pokemons", label: "Pokémons" },
   { href: "/code", label: "Code" },
   { href: "/author", label: "Author" },
 ];

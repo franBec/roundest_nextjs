@@ -4,7 +4,7 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 import { Pokemon } from "@/__generated__/api/roundest/model";
-import { columns } from "@/app/results/_components/data-table-columns";
+import { columns } from "@/app/pokemons/_components/data-table-columns";
 import {
   Table,
   TableBody,

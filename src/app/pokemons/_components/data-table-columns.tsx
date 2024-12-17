@@ -1,7 +1,7 @@
 import { Pokemon } from "@/__generated__/api/roundest/model";
 import { createColumnHelper } from "@tanstack/react-table";
 import PokemonImage from "@/components/pokemon/pokemon-image";
-import HoverLink from "@/components/v0/hover-link";
+import Link from "next/link";
 
 const columnHelper = createColumnHelper<Pokemon>();
 export const columns = [
@@ -29,7 +29,14 @@ export const columns = [
     header: () => "Actions",
     cell: cellContext => {
       const id = cellContext.row.original.id;
-      return <HoverLink href={`/pokemons/${id}`} />;
+      return (
+        <Link
+          href={`/pokemons/${id}`}
+          className="text-primary no-underline hover:underline transition-all duration-200"
+        >
+          {"More info..."}
+        </Link>
+      );
     },
   }),
 ];

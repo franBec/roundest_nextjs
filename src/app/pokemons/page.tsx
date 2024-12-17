@@ -13,6 +13,8 @@ import { DataTablePagination } from "@/components/pagination/data-table-paginati
 import { calculateTotalPages } from "@/app/pokemons/_utils/utils";
 import { stringify } from "qs";
 import { useBackendLanguage } from "@/components/backend-language/backend-language-context";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 const Page = () => {
   const [name] = useQueryState("name");
@@ -64,9 +66,7 @@ const Page = () => {
   const totalPages = calculateTotalPages(response.data);
   return (
     <div className="container mx-auto space-y-4">
-      <div className="flex flex-col items-center">
-        <p>{backendUrl}</p>
-      </div>
+      <h1 className="text-4xl font-bold">Pokémons</h1>
       <div className="space-y-4">
         <DataTable
           data={response.data.content ?? []}
@@ -81,6 +81,14 @@ const Page = () => {
             totalPages={totalPages}
           />
         )}
+      </div>
+      <div className="w-full flex justify-center items-center space-x-2">
+        <span className="font-bold text-xl">Not happy with the results?</span>
+        <Button asChild variant="secondary">
+          <Link href="/vote">
+            <span>Vote!</span>
+          </Link>
+        </Button>
       </div>
     </div>
   );

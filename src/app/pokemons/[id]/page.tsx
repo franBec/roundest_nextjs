@@ -4,8 +4,9 @@ import { useFindById } from "@/__generated__/api/roundest/roundestApi";
 import { useParams } from "next/navigation";
 import AxiosErrorAlert from "@/components/v0/axios-error-alert";
 import PokemonCard from "@/components/pokemon/pokemon-card";
-import RedirectButton from "@/components/v0/redirect-button";
 import { useBackendLanguage } from "@/components/backend-language/backend-language-context";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 const Page = () => {
   const id = parseInt(useParams<{ id: string }>().id);
@@ -37,8 +38,12 @@ const Page = () => {
           imageUrl={response?.data.spriteUrl}
           isPending={isPending}
         />
-        <div className="w-full flex justify-end">
-          <RedirectButton href="/pokemons" label="See Pokemons" />
+        <div className="w-full flex justify-center">
+          <Button asChild variant="secondary">
+            <Link href="/pokemons">
+              <span>See Pokemons</span>
+            </Link>
+          </Button>
         </div>
       </div>
     </div>

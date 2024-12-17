@@ -6,9 +6,9 @@ import {
   FormControl,
   FormField,
   FormItem,
-  FormMessage,
 } from "@/components/ui/form";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 
 interface PokemonFilterFormProps {
   defaultName: string;
@@ -26,6 +26,10 @@ const PokemonsFilterForm = ({
   });
 
   const handleFormSubmit = ({ name }: FindAllParams) => {
+    if(name && name.length > 10) {
+      toast("name search support at most 10 characters");
+      return;
+    }
     onSubmit(name || "");
   };
 
@@ -43,7 +47,6 @@ const PokemonsFilterForm = ({
               <FormControl>
                 <Input placeholder="Filter by Pokémon name..." {...field} />
               </FormControl>
-              <FormMessage />
             </FormItem>
           )}
         />

@@ -33,7 +33,7 @@ const languageOptions = [
   { value: "typescript", label: "TypeScript" },
 ];
 
-export const Header  = () => {
+export const Header = () => {
   const pathname = usePathname();
   const [selectedLanguage, setSelectedLanguage] = React.useState(languageOptions[0].value);
 
@@ -55,7 +55,7 @@ export const Header  = () => {
   );
 
   const LanguageSelector = () => (
-    <div className="flex items-center space-x-2">
+    <div className="flex items-center space-x-1">
       <span className="text-sm font-medium">&lt;Using Next.js +</span>
       <Select value={selectedLanguage} onValueChange={setSelectedLanguage}>
         <SelectTrigger className="w-[100px]">
@@ -73,22 +73,18 @@ export const Header  = () => {
     </div>
   );
 
-  const Title = () => (
-    <h1 className="text-2xl font-bold sm:text-xl">
-      <Link href="/" className="hover:underline">
-        &lt;Roundest Pokémon/&gt;
-      </Link>
-    </h1>
-  );
-
   return (
     <header className="p-4 border-b">
       <nav className="container mx-auto flex justify-between items-center">
-        <div className="hidden md:block">
-          <Title />
-        </div>
-        <LanguageSelector />
+        <h1 className="text-2xl font-bold sm:text-xl">
+          <Link href="/" className="hover:underline">
+            &lt;Roundest Pokémon/&gt;
+          </Link>
+        </h1>
         <div className="flex items-center space-x-4">
+          <div className="hidden md:block">
+            <LanguageSelector />
+          </div>
           <ul className="hidden md:flex space-x-4 items-center">
             <NavLinks />
           </ul>
@@ -102,7 +98,7 @@ export const Header  = () => {
               </SheetTrigger>
               <SheetContent>
                 <div className="flex flex-col space-y-4 mt-4">
-                  <Title />
+                  <LanguageSelector />
                   <NavLinks mobile />
                 </div>
               </SheetContent>

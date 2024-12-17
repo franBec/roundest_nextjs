@@ -24,8 +24,8 @@ export default function Page() {
         </p>
       </header>
 
-      <main className="max-w-3xl mx-auto">
-        <section className="mb-10 p-6 shadow border-2 rounded-lg">
+      <main className="max-w-4xl mx-auto space-y-8">
+        <section className="p-6 shadow border-2 rounded-lg">
           <h3 className="text-2xl font-bold mb-4">
             What&#39;s This All About?
           </h3>
@@ -40,7 +40,7 @@ export default function Page() {
           </ul>
         </section>
 
-        <section className="mb-10 p-6 shadow border-2 rounded-lg">
+        <section className="p-6 shadow border-2 rounded-lg">
           <h3 className="text-2xl font-bold mb-4">
             The Twist: Choose Your Backend!
           </h3>
@@ -56,7 +56,7 @@ export default function Page() {
           </p>
         </section>
 
-        <section className="mb-10 p-6 shadow border-2 rounded-lg text-center">
+        <section className="p-6 shadow border-2 rounded-lg text-center">
           <h3 className="text-2xl font-bold mb-4">Ready to Play?</h3>
           <p className="mb-6">
             Click the &#34;Vote&#34; button to start judging Pokémon roundness

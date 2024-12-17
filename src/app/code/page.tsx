@@ -7,7 +7,7 @@ export default function Page() {
         Understanding the Code Behind <em>Roundest Pokémon</em>
       </h1>
 
-      <section>
+      <section className="p-6 shadow border-2 rounded-lg">
         <h2 className="text-2xl font-semibold mb-2">The Architecture</h2>
         <p className="leading-relaxed">
           The <em>Roundest Pokémon</em> app demonstrates an interesting
@@ -32,7 +32,7 @@ export default function Page() {
         </p>
       </section>
 
-      <section>
+      <section className="p-6 shadow border-2 rounded-lg">
         <h2 className="text-2xl font-semibold mb-2">
           Why Next.js for the Frontend?
         </h2>
@@ -92,7 +92,7 @@ export default function Page() {
         </ul>
       </section>
 
-      <section>
+      <section className="p-6 shadow border-2 rounded-lg">
         <h2 className="text-2xl font-semibold mb-2">The Backend Systems</h2>
         <p className="leading-relaxed">
           The backend systems showcase a variety of popular JVM-based
@@ -126,7 +126,7 @@ export default function Page() {
         </p>
       </section>
 
-      <section>
+      <section className="p-6 shadow border-2 rounded-lg">
         <h2 className="text-2xl font-semibold mb-2">Repositories</h2>
         <p className="leading-relaxed">
           Explore the codebases for both the frontend and backend systems:

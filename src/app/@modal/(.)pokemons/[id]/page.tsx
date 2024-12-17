@@ -3,9 +3,10 @@
 import { useFindById } from "@/__generated__/api/roundest/roundestApi";
 import { useParams } from "next/navigation";
 import AxiosErrorAlert from "@/components/v0/axios-error-alert";
-import PokemonCard from "@/components/pokemon/pokemon-card";
+import PokemonCard from "@/app/pokemons/[id]/_components/pokemon-card";
 import Modal from "@/components/gitdagray/modal";
 import { useBackendLanguage } from "@/components/backend-language/backend-language-context";
+import PokemonCardLoading from "@/app/pokemons/[id]/_components/pokemon-card-loading";
 
 const Page = () => {
   const id = parseInt(useParams<{ id: string }>().id);
@@ -31,12 +32,15 @@ const Page = () => {
   return (
     <Modal>
       <div className="flex flex-col items-center">
-        <PokemonCard
-          id={response?.data.id}
-          name={response?.data.name}
-          imageUrl={response?.data.spriteUrl}
-          isPending={isPending}
-        />
+        {isPending ? (
+          <PokemonCardLoading />
+        ) : (
+          <PokemonCard
+            id={response?.data.id}
+            name={response?.data.name}
+            imageUrl={response?.data.spriteUrl}
+          />
+        )}
       </div>
     </Modal>
   );

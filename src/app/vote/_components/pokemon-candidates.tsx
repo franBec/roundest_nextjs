@@ -1,9 +1,10 @@
-import PokemonCard from "@/components/pokemon/pokemon-card";
+import PokemonCard from "@/app/pokemons/[id]/_components/pokemon-card";
 import { Button } from "@/components/ui/button";
 import { FC } from "react";
 import { Pokemon } from "@/__generated__/api/roundest/model";
 import { useIncrementPokemonVotes } from "@/__generated__/api/roundest/roundestApi";
 import { toast } from "sonner";
+import PokemonCardLoading from "@/app/pokemons/[id]/_components/pokemon-card-loading";
 
 interface PokemonCandidatesProps {
   voteUrl: string;
@@ -44,7 +45,7 @@ const PokemonCandidates: FC<PokemonCandidatesProps> = ({
     <div className="flex justify-center gap-4">
       {Array.from({ length: candidatesSize }).map((_, index) => {
         if (isLoading) {
-          return <PokemonCard key={index} isPending={isLoading} />;
+          return <PokemonCardLoading key={index} />;
         }
 
         const pokemon = pokemons?.[index];

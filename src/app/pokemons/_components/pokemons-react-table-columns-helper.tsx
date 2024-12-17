@@ -1,6 +1,6 @@
 import { Pokemon } from "@/__generated__/api/roundest/model";
 import { createColumnHelper } from "@tanstack/react-table";
-import PokemonImage from "@/components/pokemon/pokemon-image";
+import PokemonImage from "@/app/pokemons/[id]/_components/pokemon-image";
 import Link from "next/link";
 
 const columnHelper = createColumnHelper<Pokemon>();

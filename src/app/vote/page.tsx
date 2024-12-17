@@ -1,17 +1,12 @@
 "use client";
-import { useState } from "react";
 import { useFindAll } from "@/__generated__/api/roundest/roundestApi";
 import AxiosErrorAlert from "@/components/v0/axios-error-alert";
-import {
-  BackendSelect,
-  Backends,
-} from "@/components/backend-select/backend-select";
 import PokemonCandidates from "@/app/vote/_components/pokemon-candidates";
+import { useBackendLanguage } from "@/components/backend-language/backend-language-context";
 
 const Page = () => {
-  const [firstBackend] = Array.from(Backends.entries());
-  const [backendUrl, setBackendUrl] = useState<string>(firstBackend[1]);
-
+  const { selectedBackendLanguage } = useBackendLanguage();
+  const backendUrl = selectedBackendLanguage.value;
   const pageSize = 2;
   const {
     data: response,
@@ -31,17 +26,12 @@ const Page = () => {
   return (
     <div className="flex flex-col items-center space-y-4">
       <div className="w-full max-w-md flex justify-center">
-        <BackendSelect
-          onSelectCallback={setBackendUrl}
-          refetch={refetch}
-          isPending={isPending}
-          isRefetching={isRefetching}
-        />
+        <p>{backendUrl}</p>
       </div>
       {isError && <AxiosErrorAlert axiosError={error} />}
       {!isError && (
         <PokemonCandidates
-          backendUrl={backendUrl}
+          voteUrl={backendUrl}
           candidatesSize={pageSize}
           isLoading={isPending || isRefetching}
           pokemons={response?.data.content}

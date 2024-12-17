@@ -11,12 +11,8 @@ import AxiosErrorAlert from "@/components/v0/axios-error-alert";
 import { DataTable } from "@/app/results/_components/data-table";
 import { DataTablePagination } from "@/components/pagination/data-table-pagination";
 import { calculateTotalPages } from "@/app/results/_utils/utils";
-import {
-  Backends,
-  BackendSelect,
-} from "@/components/backend-select/backend-select";
-import { useState } from "react";
 import { stringify } from "qs";
+import { useBackendLanguage } from "@/components/backend-language/backend-language-context";
 
 const Page = () => {
   const [name] = useQueryState("name");
@@ -29,16 +25,13 @@ const Page = () => {
     parseAsArrayOf(parseAsString).withDefault(["votes:desc"])
   );
 
-  const [firstBackend] = Array.from(Backends.entries());
-  const [backendUrl, setBackendUrl] = useState<string>(firstBackend[1]);
-
+  const { selectedBackendLanguage } = useBackendLanguage();
+  const backendUrl = selectedBackendLanguage.value;
   const {
     data: response,
     error,
     isError,
     isPending,
-    isRefetching,
-    refetch,
   } = useFindAll(
     {
       name: name ?? undefined,
@@ -72,12 +65,7 @@ const Page = () => {
   return (
     <div className="container mx-auto space-y-4">
       <div className="flex flex-col items-center">
-        <BackendSelect
-          onSelectCallback={setBackendUrl}
-          refetch={refetch}
-          isPending={isPending}
-          isRefetching={isRefetching}
-        />
+        <p>{backendUrl}</p>
       </div>
       <div className="space-y-4">
         <DataTable

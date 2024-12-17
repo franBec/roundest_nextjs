@@ -6,7 +6,7 @@ import { useIncrementPokemonVotes } from "@/__generated__/api/roundest/roundestA
 import { toast } from "@/hooks/use-toast";
 
 interface PokemonCandidatesProps {
-  backendUrl: string;
+  voteUrl: string;
   candidatesSize: number;
   isLoading: boolean;
   pokemons: Pokemon[] | undefined;
@@ -14,14 +14,14 @@ interface PokemonCandidatesProps {
 }
 
 const PokemonCandidates: FC<PokemonCandidatesProps> = ({
-  backendUrl,
+  voteUrl,
   candidatesSize,
   isLoading,
   pokemons,
   refetch,
 }) => {
   const { mutate: incrementVote, isPending: isVoting } =
-    useIncrementPokemonVotes({ axios: { baseURL: backendUrl } });
+    useIncrementPokemonVotes({ axios: { baseURL: voteUrl } });
 
   const handleVote = (id: number) => {
     incrementVote(

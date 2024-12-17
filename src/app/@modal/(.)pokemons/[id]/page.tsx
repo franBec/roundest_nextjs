@@ -5,6 +5,7 @@ import { useParams } from "next/navigation";
 import AxiosErrorAlert from "@/components/v0/axios-error-alert";
 import PokemonCard from "@/components/pokemon/pokemon-card";
 import Modal from "@/components/gitdagray/modal";
+import { useBackendLanguage } from "@/components/backend-language/backend-language-context";
 
 const Page = () => {
   const id = parseInt(useParams<{ id: string }>().id);
@@ -12,13 +13,15 @@ const Page = () => {
     throw new Error(`id in pokemons/[id] must be a number`);
   }
 
+  const { selectedBackendLanguage } = useBackendLanguage();
+  const backendUrl = selectedBackendLanguage.value;
   const {
     isPending,
     isError,
     data: response,
     error,
   } = useFindById(id, {
-    axios: { baseURL: process.env.NEXT_PUBLIC_API_BACKEND_JAVA },
+    axios: { baseURL: backendUrl },
   });
 
   if (isError) {

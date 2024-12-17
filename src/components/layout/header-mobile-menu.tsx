@@ -10,7 +10,10 @@ interface MobileMenuProps {
   pathname: string;
 }
 
-export const HeaderMobileMenu: FC<MobileMenuProps> = ({ navLinks, pathname }) => (
+export const HeaderMobileMenu: FC<MobileMenuProps> = ({
+  navLinks,
+  pathname,
+}) => (
   <div className="md:hidden">
     <Sheet>
       <SheetTrigger asChild>

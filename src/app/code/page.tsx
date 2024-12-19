@@ -2,7 +2,7 @@ import Link from "next/link";
 
 const Page = () => {
   return (
-    <main className="max-w-4xl mx-auto space-y-8">
+    <div className="max-w-4xl mx-auto space-y-8">
       <h1 className="text-4xl font-bold">
         Understanding the Code Behind <em>Roundest Pokémon</em>
       </h1>
@@ -31,6 +31,23 @@ const Page = () => {
           experience.
         </p>
       </section>
+
+      <section className="p-6 shadow border-2 rounded-lg">
+        <h3 className="text-2xl font-bold mb-4">Inspiration</h3>
+        <iframe
+          className="w-full aspect-video mb-4 rounded-lg"
+          src="https://www.youtube.com/embed/O-EWIlZW0mM?si=wZ6OFGzOAtcEeNPs"
+          title="Theo's Roundest Pokémon Voting App"
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+        ></iframe>
+        <p>
+          This project was inspired by Theo&#39;s video in which he builds the same app using five different technologies:
+          Rails, Elixir, Go, the T3 stack, and React Server Components.
+        </p>
+      </section>
+
 
       <section className="p-6 shadow border-2 rounded-lg">
         <h2 className="text-2xl font-semibold mb-2">
@@ -171,7 +188,7 @@ const Page = () => {
         </ul>
         <p>Check them out to dive deeper into how the system is implemented!</p>
       </section>
-    </main>
+    </div>
   );
 };
 export default Page;

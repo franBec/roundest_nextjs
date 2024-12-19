@@ -24,7 +24,7 @@ const Page = () => {
         </p>
       </header>
 
-      <main className="max-w-4xl mx-auto space-y-8">
+      <div className="max-w-4xl mx-auto space-y-8">
         <section className="p-6 shadow border-2 rounded-lg">
           <h3 className="text-2xl font-bold mb-4">
             What&#39;s This All About?
@@ -44,11 +44,25 @@ const Page = () => {
           <h3 className="text-2xl font-bold mb-4">
             The Twist: Choose Your Backend!
           </h3>
+          <div className="flex justify-center">
+            <img
+              src="/images/backend-selector.gif"
+              alt="Backend Selector Animation"
+              className="mb-4 rounded-lg"
+            />
+          </div>
           <p className="mb-4">
-            When you vote, you can choose which backend system processes your
-            vote. Don&#39;t worry if you&#39;re not tech-savvy - this is just a
+            On the top of the page, you can choose which backend system processes your
+            vote (Next.js + _). Don&#39;t worry if you&#39;re not tech-savvy - this is just a
             fun way to show how different computer systems can work together!
           </p>
+          <div className="flex justify-center">
+            <img
+              src="/images/vote-flow.gif"
+              alt="Backend Selector Animation"
+              className="mb-4 rounded-lg"
+            />
+          </div>
           <p className="">
             No matter which backend you choose, all votes end up in the same
             place. It&#39;s like mailing a letter - you can use different post
@@ -88,7 +102,7 @@ const Page = () => {
             </Button>
           </div>
         </section>
-      </main>
+      </div>
     </div>
   );
 };

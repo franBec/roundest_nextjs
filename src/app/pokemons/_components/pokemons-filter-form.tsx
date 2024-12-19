@@ -1,12 +1,7 @@
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { FindAllParams } from "@/__generated__/api/roundest/model";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-} from "@/components/ui/form";
+import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 
@@ -26,7 +21,7 @@ const PokemonsFilterForm = ({
   });
 
   const handleFormSubmit = ({ name }: FindAllParams) => {
-    if(name && name.length > 10) {
+    if (name && name.length > 10) {
       toast("name search support at most 10 characters");
       return;
     }

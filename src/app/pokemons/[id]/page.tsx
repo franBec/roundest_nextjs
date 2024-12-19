@@ -41,7 +41,7 @@ const Page = () => {
             imageUrl={response?.data.spriteUrl}
           />
         )}
-        <PokemonFooter/>
+        <PokemonFooter />
       </div>
     </div>
   );

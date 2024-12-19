@@ -52,9 +52,10 @@ const Page = () => {
             />
           </div>
           <p className="mb-4">
-            On the top of the page, you can choose which backend system processes your
-            vote (Next.js + _). Don&#39;t worry if you&#39;re not tech-savvy - this is just a
-            fun way to show how different computer systems can work together!
+            On the top of the page, you can choose which backend system
+            processes your vote (Next.js + _). Don&#39;t worry if you&#39;re not
+            tech-savvy - this is just a fun way to show how different computer
+            systems can work together!
           </p>
           <div className="flex justify-center">
             <img
@@ -94,7 +95,7 @@ const Page = () => {
           </p>
           <div className="flex space-x-4">
             <Button asChild variant="secondary">
-              <Link href="/code">View Code</Link>
+              <Link href="/about">About the project</Link>
             </Button>
 
             <Button asChild variant="secondary">

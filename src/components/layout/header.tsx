@@ -11,7 +11,7 @@ import { useBackendLanguage } from "@/components/backend-language/backend-langua
 const navLinks = [
   { href: "/vote", label: "Vote!" },
   { href: "/pokemons", label: "Pokémons" },
-  { href: "/code", label: "Code" },
+  { href: "/about", label: "About" },
   { href: "/author", label: "Author" },
 ];
 

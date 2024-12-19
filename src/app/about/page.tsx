@@ -43,11 +43,11 @@ const Page = () => {
           allowFullScreen
         ></iframe>
         <p>
-          This project was inspired by Theo&#39;s video in which he builds the same app using five different technologies:
-          Rails, Elixir, Go, the T3 stack, and React Server Components.
+          This project was inspired by Theo&#39;s video in which he builds the
+          same app using five different technologies: Rails, Elixir, Go, the T3
+          stack, and React Server Components.
         </p>
       </section>
-
 
       <section className="p-6 shadow border-2 rounded-lg">
         <h2 className="text-2xl font-semibold mb-2">

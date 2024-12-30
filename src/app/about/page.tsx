@@ -144,6 +144,32 @@ const Page = () => {
       </section>
 
       <section className="p-6 shadow border-2 rounded-lg">
+        <h3 className="text-2xl font-bold mb-4">X-Application-Name Header</h3>
+        <p className="mb-4">
+          Several actions in this app trigger backend requests, such as:
+        </p>
+        <ul className="list-disc pl-6 mb-4">
+          <li>Going to the vote Pokémon page</li>
+          <li>Voting for a Pokémon</li>
+          <li>Navigating to the Pokémon list page</li>
+          <li>Filtering Pokémon by name or sorting the table</li>
+          <li>Switching pages in the Pokémon table</li>
+        </ul>
+        <p className="mb-4">
+          <strong>How do I know which backend processed the request?</strong>
+          Every backend response includes a special HTTP header called <code>X-Application-Name</code>. This header
+          contains the name of the application that handled the request. By checking its value, you can identify the
+          backend responsible for the response.
+        </p>
+        <p>
+          To view this header, open your browser&#39;s developer tools (usually accessible
+          via <strong>F12</strong> or <strong>Ctrl+Shift+I</strong>). Navigate to the <strong>Network</strong> tab,
+          select the relevant request, and look under the <strong>Headers</strong> section for
+          the <code>X-Application-Name</code> field.
+        </p>
+      </section>
+
+      <section className="p-6 shadow border-2 rounded-lg">
         <h2 className="text-2xl font-semibold mb-2">Repositories</h2>
         <p className="leading-relaxed">
           Explore the codebases for both the frontend and backend systems:

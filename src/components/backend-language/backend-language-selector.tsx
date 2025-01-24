@@ -10,17 +10,17 @@ import { toast } from "sonner";
 
 export const backendLanguageOptions = [
   {
-    value: "http://localhost:8080",
+    value: process.env.NEXT_PUBLIC_API_BACKEND_JAVA || "",
     label: "Java",
     colors: ["5899C4", "DC4042"],
   },
   {
-    value: "http://localhost:8081",
+    value: process.env.NEXT_PUBLIC_API_BACKEND_KOTLIN || "",
     label: "Kotlin",
     colors: ["4B7EDC", "F78902"],
   },
   {
-    value: "http://localhost:8082",
+    value: process.env.NEXT_PUBLIC_API_BACKEND_GROOVY || "",
     label: "Groovy",
     colors: ["5B95B4", "AFAFAF"],
   },

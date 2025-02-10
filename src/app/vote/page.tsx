@@ -22,7 +22,12 @@ const Page = () => {
       pageSize,
       random: true,
     },
-    { axios: { baseURL: backendUrl } }
+    {
+      axios: { baseURL: backendUrl },
+      query:{
+        refetchOnWindowFocus: false
+      }
+    }
   );
 
   return (

@@ -24,9 +24,9 @@ const Page = () => {
     },
     {
       axios: { baseURL: backendUrl },
-      query:{
-        refetchOnWindowFocus: false
-      }
+      query: {
+        refetchOnWindowFocus: false,
+      },
     }
   );
 

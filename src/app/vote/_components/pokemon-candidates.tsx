@@ -15,12 +15,12 @@ interface PokemonCandidatesProps {
 }
 
 const PokemonCandidates: FC<PokemonCandidatesProps> = ({
-                                                         voteUrl,
-                                                         candidatesSize,
-                                                         isLoading,
-                                                         pokemons,
-                                                         refetch,
-                                                       }) => {
+  voteUrl,
+  candidatesSize,
+  isLoading,
+  pokemons,
+  refetch,
+}) => {
   const { mutate: incrementVote, isPending: isVoting } =
     useIncrementPokemonVotes({ axios: { baseURL: voteUrl } });
 
@@ -51,7 +51,10 @@ const PokemonCandidates: FC<PokemonCandidatesProps> = ({
 
           const pokemon = pokemons?.[index];
           return (
-            <div className="flex flex-col items-center" key={pokemon?.id ?? index}>
+            <div
+              className="flex flex-col items-center"
+              key={pokemon?.id ?? index}
+            >
               <PokemonCard
                 id={pokemon?.id}
                 name={pokemon?.name}
@@ -70,7 +73,11 @@ const PokemonCandidates: FC<PokemonCandidatesProps> = ({
           );
         })}
       </div>
-      <Button onClick={refetch} disabled={isVoting || isLoading} variant="secondary">
+      <Button
+        onClick={refetch}
+        disabled={isVoting || isLoading}
+        variant="secondary"
+      >
         None is round
       </Button>
     </div>

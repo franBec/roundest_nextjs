@@ -15,12 +15,12 @@ interface PokemonCandidatesProps {
 }
 
 const PokemonCandidates: FC<PokemonCandidatesProps> = ({
-  voteUrl,
-  candidatesSize,
-  isLoading,
-  pokemons,
-  refetch,
-}) => {
+                                                         voteUrl,
+                                                         candidatesSize,
+                                                         isLoading,
+                                                         pokemons,
+                                                         refetch,
+                                                       }) => {
   const { mutate: incrementVote, isPending: isVoting } =
     useIncrementPokemonVotes({ axios: { baseURL: voteUrl } });
 
@@ -42,34 +42,39 @@ const PokemonCandidates: FC<PokemonCandidatesProps> = ({
   };
 
   return (
-    <div className="flex justify-center gap-4">
-      {Array.from({ length: candidatesSize }).map((_, index) => {
-        if (isLoading) {
-          return <PokemonCardLoading key={index} />;
-        }
+    <div className="flex flex-col items-center gap-4">
+      <div className="flex justify-center gap-4">
+        {Array.from({ length: candidatesSize }).map((_, index) => {
+          if (isLoading) {
+            return <PokemonCardLoading key={index} />;
+          }
 
-        const pokemon = pokemons?.[index];
-        return (
-          <div className="flex flex-col" key={pokemon?.id ?? index}>
-            <PokemonCard
-              id={pokemon?.id}
-              name={pokemon?.name}
-              imageUrl={pokemon?.spriteUrl}
-            />
-            {pokemon?.id ? (
-              <Button
-                onClick={() => handleVote(pokemon.id!)}
-                disabled={isVoting}
-              >
-                Vote
-              </Button>
-            ) : (
-              <Button disabled>Vote</Button>
-            )}
-          </div>
-        );
-      })}
+          const pokemon = pokemons?.[index];
+          return (
+            <div className="flex flex-col items-center" key={pokemon?.id ?? index}>
+              <PokemonCard
+                id={pokemon?.id}
+                name={pokemon?.name}
+                imageUrl={pokemon?.spriteUrl}
+              />
+              <div className="w-full mt-2">
+                <Button
+                  onClick={() => pokemon?.id && handleVote(pokemon.id)}
+                  disabled={isVoting || !pokemon?.id}
+                  className="w-full"
+                >
+                  Vote
+                </Button>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+      <Button onClick={refetch} disabled={isVoting || isLoading} variant="secondary">
+        None is round
+      </Button>
     </div>
   );
 };
+
 export default PokemonCandidates;
